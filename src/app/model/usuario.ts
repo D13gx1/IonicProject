@@ -169,4 +169,4 @@ export class Usuario extends Persona {
     
     // Navega a la página especificada con los extras de navegación
     router.navigate([pagina], navigationExtras);
-}
+}};
