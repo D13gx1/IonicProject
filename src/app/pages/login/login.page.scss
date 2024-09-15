@@ -1,8 +1,9 @@
-ion-content{
+ion-content {
   --padding-top: 20px;
   --padding-bottom: 20px;
   --padding-end: 20px;
   --padding-start: 20px;
+  background-color: white; /* Fondo blanco para el contenido */
 }
 
 .center-container {
@@ -10,6 +11,31 @@ ion-content{
   justify-content: center; /* Centra horizontalmente */
   align-items: center;     /* Centra verticalmente */
   height: 100%;           /* Ocupa toda la altura de la pantalla */
+}
+
+ion-card {
+  background-color: white; /* Fondo blanco para la tarjeta */
+  color: black; /* Texto negro */
+}
+
+ion-item {
+  background-color: white; /* Fondo blanco para los ítems */
+  color: black; /* Texto negro */
+}
+
+ion-toolbar {
+  background-color: white; /* Fondo blanco en el toolbar */
+  color: black; /* Texto negro */
+}
+
+ion-button {
+  --background: white; /* Fondo blanco para el botón */
+  color: black; /* Texto negro del botón */
+  border: 1px solid black; /* Borde negro para contraste */
+}
+
+a {
+  color: black; /* Enlace en negro */
 }
 
 .foto-portada {

@@ -6,7 +6,7 @@ import { Usuario } from 'src/app/model/usuario';
 import { AnimationController} from '@ionic/angular';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-inicio',
   templateUrl: 'inicio.page.html',
   styleUrls: ['inicio.page.scss'],
 })
