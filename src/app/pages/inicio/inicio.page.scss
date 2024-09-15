@@ -1,5 +1,9 @@
-.sticky-bottom {
-  position: fixed;
-  bottom: 0;
-  width: 100%;
+ion-content {
+  --background: #ffffff;
+  /* Establece el fondo blanco */
+}
+
+ion-header ion-toolbar{
+  --background: #da2121e8 !important;
+  /* Establece el fondo blanco */
 }
