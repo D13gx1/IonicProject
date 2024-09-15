@@ -11,6 +11,8 @@ import { Usuario } from 'src/app/model/usuario';
 export class LoginPage {
 
   public usuario: Usuario;
+  passwordType: string = 'password';
+  passwordIcon: string = 'eye-off';
 
   constructor(
       private router: Router
@@ -40,5 +42,16 @@ export class LoginPage {
       });
     toast.present();
   }
+
+  togglePasswordVisibility(): void {
+    if (this.passwordType === 'password') {
+      this.passwordType = 'text';
+      this.passwordIcon = 'eye';
+    } else {
+      this.passwordType = 'password';
+      this.passwordIcon = 'eye-off';
+    }
+  }
+
 
 }

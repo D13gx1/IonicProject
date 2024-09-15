@@ -6,21 +6,37 @@
       </ion-button>
     </ion-buttons>
 
-    <ion-segment value="inicio">
-      <ion-segment-button value="inicio" (click)="navigateTo('inicio')">
-        Inicio
-      </ion-segment-button>
-      <ion-segment-button value="leerQR" (click)="navigateTo('leerQR')">
-        LeerQR
-      </ion-segment-button>
-      <ion-segment-button value="miCurso" (click)="navigateTo('miCurso')">
-        Mi Curso
-      </ion-segment-button>
-    </ion-segment>
-
+    <ion-tabs>
+      <ion-tab-bar slot="bottom" class="sticky-bottom"> <!-- Clase personalizada -->
+        <ion-tab-button tab="home">
+          <ion-icon name="home"></ion-icon>
+          Inicio
+        </ion-tab-button>
+        <ion-tab-button tab="radio">
+          <ion-icon name="qr-code"></ion-icon>
+          mis datos
+        </ion-tab-button>
+        <ion-tab-button tab="library">
+          <ion-icon name="library"></ion-icon>
+          curso
+        </ion-tab-button>
+        <ion-tab-button tab="search">
+          <ion-icon name="search"></ion-icon>
+          foro
+        </ion-tab-button>
+      </ion-tab-bar>
+    </ion-tabs>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
   <!-- Contenido de la página -->
 </ion-content>
+
+<style>
+  .sticky-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+</style>

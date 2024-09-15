@@ -6,6 +6,11 @@ ion-content {
   background-color: white; /* Fondo blanco para el contenido */
 }
 
+.custom-toolbar {
+  background-color: transparent; /* Para hacer transparente */
+  color: black; /* Para cambiar el color del texto */
+}
+
 .center-container {
   display: flex;
   justify-content: center; /* Centra horizontalmente */
@@ -13,8 +18,13 @@ ion-content {
   height: 100%;           /* Ocupa toda la altura de la pantalla */
 }
 
+ion-card-header {
+  background-color: white !important; /* Fondo blanco para la tarjeta */
+  color: black; /* Texto negro */
+}
+
 ion-card {
-  background-color: white; /* Fondo blanco para la tarjeta */
+  background-color: white !important; /* Fondo blanco para la tarjeta */
   color: black; /* Texto negro */
 }
 
