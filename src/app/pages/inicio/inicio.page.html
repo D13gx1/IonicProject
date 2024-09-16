@@ -1,42 +1,27 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button routerLink="/login">
-        <ion-icon slot="icon-only" name="arrow-back-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
 
-    <ion-tabs>
-      <ion-tab-bar slot="bottom" class="sticky-bottom"> <!-- Clase personalizada -->
-        <ion-tab-button tab="home">
-          <ion-icon name="home"></ion-icon>
-          Inicio
-        </ion-tab-button>
-        <ion-tab-button tab="radio">
-          <ion-icon name="qr-code"></ion-icon>
-          mis datos
-        </ion-tab-button>
-        <ion-tab-button tab="library">
-          <ion-icon name="library"></ion-icon>
-          curso
-        </ion-tab-button>
-        <ion-tab-button tab="search">
-          <ion-icon name="search"></ion-icon>
-          foro
-        </ion-tab-button>
-      </ion-tab-bar>
-    </ion-tabs>
-  </ion-toolbar>
-</ion-header>
+<ion-tabs>
+  <ion-tab-bar slot="bottom" >
 
-<ion-content>
-  <!-- Contenido de la página -->
-</ion-content>
+    <ion-tab-button tab="home">
+      <ion-icon name="home"></ion-icon>
+      Inicio
+    </ion-tab-button>
 
-<style>
-  .sticky-bottom {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-  }
-</style>
+    <ion-tab-button tab="radio">
+      <ion-icon name="qr-code"></ion-icon>
+      mis datos
+    </ion-tab-button>
+
+    <ion-tab-button tab="library">
+      <ion-icon name="library"></ion-icon>
+      curso
+    </ion-tab-button>
+
+    <ion-tab-button tab="search">
+      <ion-icon name="search"></ion-icon>
+      foro
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-tabs>
+
