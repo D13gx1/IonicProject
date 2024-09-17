@@ -21,7 +21,7 @@ export class LoginPage {
   {
     this.usuario = new Usuario();
     this.usuario.recibirUsuario(activatedRoute, router);
-    this.usuario.cuenta = 'atorres';
+    this.usuario.cuenta = 'chimuelo123';
     this.usuario.password = '1234';
   }
 
@@ -32,7 +32,7 @@ export class LoginPage {
       return;
     } 
     this.mostrarMensajeEmergente('¡Bienvenido(a) al Sistema de Asistencia DUOC!');
-    this.usuario.navegarEnviandousuario(this.router, '/inicio');
+    this.usuario.navegarEnviandousuario(this.router, '/tabs');
   }
 
   async mostrarMensajeEmergente(mensaje: string, duracion?: number) {

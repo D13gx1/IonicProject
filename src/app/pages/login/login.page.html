@@ -6,10 +6,17 @@
 </ion-header>
 
 <ion-card-content>
+  <ion-toolbar >
+    <p class="texto"> Bienvenido a DUOC</p>
+  </ion-toolbar>
+</ion-card-content>
+
+<ion-card-content>
   <ion-item>
     <ion-input [(ngModel)]="usuario.cuenta" label="Cuenta" labelPlacement="floating"
-      placeholder="Ej: atorres"></ion-input>
+      placeholder="Ej: Chimuelo123"></ion-input>
   </ion-item>
+  
 
   <ion-item>
     <ion-input [(ngModel)]="usuario.password" [type]="passwordType" label="Contraseña" labelPlacement="floating"
@@ -23,6 +30,6 @@
       Ingresar
     </ion-button>
     <br><br>
-    <a routerLink="">Crea tu cuenta gratis</a>
+    <a routerLink="/recuperar">Recuperar Contraseña</a>
   </div>
-</ion-card-content>
+  </ion-card-content>

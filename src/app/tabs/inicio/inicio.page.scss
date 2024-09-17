@@ -1,0 +1,83 @@
+/* src/app/tabs/inicio/inicio.page.scss */
+
+/* Estilos para el encabezado */
+ion-header {
+  --background: #3880ff; /* Color de fondo del encabezado */
+  --color: #fff; /* Color del texto del encabezado */
+}
+
+ion-toolbar {
+  --padding-start: 16px; /* Espaciado a la izquierda en el toolbar */
+}
+
+ion-title {
+  font-size: 20px; /* Tamaño de fuente del título */
+  font-weight: bold; /* Negrita del título */
+}
+
+/* Estilos para el contenido */
+ion-content {
+  --background: #f4f5f8; /* Color de fondo del contenido */
+  padding: 16px; /* Espaciado interno del contenido */
+}
+
+ion-card {
+  border-radius: 12px; /* Esquinas redondeadas de la tarjeta */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra de la tarjeta */
+  overflow: hidden; /* Evitar que el contenido se desborde */
+  margin-top: 16px; /* Margen superior de la tarjeta */
+}
+
+/* Estilos para el encabezado de la tarjeta */
+ion-card-header {
+  background: #fff; /* Color de fondo del encabezado de la tarjeta */
+  border-bottom: 1px solid #ddd; /* Borde inferior del encabezado */
+  padding: 16px; /* Padding en el encabezado de la tarjeta */
+}
+
+/* Estilos para el título de la tarjeta */
+ion-card-title {
+  font-size: 24px; /* Tamaño de fuente del título */
+  font-weight: bold; /* Negrita del título */
+  color: #333; /* Color del texto del título */
+  text-align: center; /* Alinear el texto al centro */
+}
+
+/* Estilos para el contenido de la tarjeta */
+ion-card-content {
+  padding: 16px; /* Padding en el contenido de la tarjeta */
+  font-size: 16px; /* Tamaño de fuente del contenido */
+  color: #666; /* Color del texto del contenido */
+  text-align: center; /* Alinear el texto al centro */
+}
+
+h1 {
+  font-size: 20px; /* Tamaño de fuente del h1 */
+  font-weight: bold; /* Negrita del h1 */
+  color: #333; /* Color del texto del h1 */
+}
+
+ion-button {
+  --background: transparent; /* Fondo transparente */
+  --color: var(--ion-color-primary); /* Color del icono */
+  --border-radius: 50%; /* Bordes redondeados */
+  --padding: 0; /* Sin padding */
+}
+
+ion-icon {
+  font-size: 24px; /* Tamaño del icono */
+}
+
+.profile-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.profile-photo {
+  width: 250px; /* Aumentado el tamaño de la foto */
+  height: 250px; /* Aumentado el tamaño de la foto */
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #f4f4f4;
+}

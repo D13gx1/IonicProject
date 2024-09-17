@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Inicio</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="confirmLogout()"> 
+        <ion-icon name="exit"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>
+        <h1 *ngIf="usuario?.cuenta !== ''">
+          ¡Bienvenido(a) {{ usuario?.nombre }} {{ usuario?.apellido }}!
+        </h1>
+      </ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <div class="profile-container">
+        <img *ngIf="usuario?.fotoUrl" [src]="usuario?.fotoUrl" alt="Foto de perfil" class="profile-photo"/>
+      </div>
+      <!-- Aquí puedes añadir más contenido si es necesario -->
+    </ion-card-content>
+  </ion-card>
+</ion-content>

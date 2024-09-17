@@ -9,6 +9,7 @@ export class Usuario extends Persona {
   public password: string;
   public preguntaSecreta: string;
   public respuestaSecreta: string;
+  public fotoUrl: string; // Nuevo atributo para la foto del perfil
 
   constructor() {
     super();
@@ -19,6 +20,7 @@ export class Usuario extends Persona {
     this.respuestaSecreta = '';
     this.nombre = '';
     this.apellido = '';
+    this.fotoUrl = ''; // Inicializar el nuevo atributo
     this.nivelEducacional = NivelEducacional.buscarNivelEducacional(1)!;
     this.fechaNacimiento = undefined;
   }
@@ -32,7 +34,8 @@ export class Usuario extends Persona {
     nombre: string,
     apellido: string,
     nivelEducacional: NivelEducacional,
-    fechaNacimiento: Date | undefined
+    fechaNacimiento: Date | undefined,
+    fotoUrl: string // Añadir parámetro para la foto
   ) {
     let usuario = new Usuario();
     usuario.cuenta = cuenta;
@@ -44,6 +47,7 @@ export class Usuario extends Persona {
     usuario.apellido = apellido;
     usuario.nivelEducacional = nivelEducacional;
     usuario.fechaNacimiento = fechaNacimiento;
+    usuario.fotoUrl = fotoUrl; // Asignar la foto
     return usuario;
   }
 
@@ -61,7 +65,7 @@ export class Usuario extends Persona {
 
   public validarPassword(): string {
     if (this.password.trim() === '') {
-      return 'Para igresar al sistema debe escribir la contraseña.';
+      return 'Para ingresar al sistema debe escribir la contraseña.';
     }
     for (let i = 0; i < this.password.length; i++) {
       if ('0123456789'.indexOf(this.password.charAt(i)) === -1) {
@@ -85,7 +89,7 @@ export class Usuario extends Persona {
   }
 
   public override toString(): string {
-    return `      ${this.cuenta}
+    return `${this.cuenta}
       ${this.correo}
       ${this.password}
       ${this.preguntaSecreta}
@@ -107,18 +111,20 @@ export class Usuario extends Persona {
         'Ana', 
         'Torres', 
         NivelEducacional.buscarNivelEducacional(6)!,
-        new Date(2000, 0, 1)
+        new Date(2000, 0, 1),
+        'path/to/atorres.jpg'  // Foto de ejemplo
       ),
       Usuario.getNewUsuario(
-        'jperez',
-        'jperez@duocuc.cl',
-        '5678',
+        'chimuelo123',
+        'chimuelo123@duocuc.cl',
+        '1234',
         '¿Cuál es tu postre favorito?',
         'panqueques',
-        'Juan',
-        'Pérez',
+        'Chimuelo',
+        'Alejandro',
         NivelEducacional.buscarNivelEducacional(5)!,
-        new Date(2000, 1, 1)
+        new Date(2000, 1, 1),
+        '../../assets/img/Chimuelo.jpg'  // Foto de ejemplo
       ),
       Usuario.getNewUsuario(
         'cmujica',
@@ -129,7 +135,8 @@ export class Usuario extends Persona {
         'Carla',
         'Mujica',
         NivelEducacional.buscarNivelEducacional(6)!,
-        new Date(2000, 2, 1)
+        new Date(2000, 2, 1),
+        'path/to/cmujica.jpg'  // Foto de ejemplo
       ),
     ]
   }
@@ -151,6 +158,7 @@ export class Usuario extends Persona {
           this.apellido = usu!.apellido;
           this.nivelEducacional = usu!.nivelEducacional;
           this.fechaNacimiento = usu!.fechaNacimiento;
+          this.fotoUrl = usu!.fotoUrl;  // Asignar la foto
           return;
         }
       }
@@ -169,4 +177,5 @@ export class Usuario extends Persona {
     
     // Navega a la página especificada con los extras de navegación
     router.navigate([pagina], navigationExtras);
-}};
+  }
+}
