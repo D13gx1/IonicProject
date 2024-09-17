@@ -103,16 +103,16 @@ export class Usuario extends Persona {
   public static getListaUsuarios(): Usuario[] {
     return [
       Usuario.getNewUsuario(
-        'atorres', 
+        'robocop', 
         'atorres@duocuc.cl', 
         '1234', 
         '¿Cuál es tu animal favorito?', 
         'gato', 
-        'Ana', 
+        'robocop', 
         'Torres', 
         NivelEducacional.buscarNivelEducacional(6)!,
         new Date(2000, 0, 1),
-        'path/to/atorres.jpg'  // Foto de ejemplo
+        '../../assets/img/Robocop.jpg'  // Foto de ejemplo
       ),
       Usuario.getNewUsuario(
         'chimuelo123',

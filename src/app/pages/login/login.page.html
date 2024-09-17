@@ -25,11 +25,16 @@
     <ion-icon [name]="passwordIcon" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
   </ion-item>
 
-  <div class="ion-margin-top">
-    <ion-button class="danger" shape="round" size="small" (click)="ingresar()">
-      Ingresar
-    </ion-button>
-    <br><br>
-    <a routerLink="/recuperar">Recuperar Contraseña</a>
+  <!-- src/app/pages/login/login.page.html -->
+
+<ion-card-content>
+  <div class="center-container">
+    <div class="ion-margin-top">
+      <ion-button class="danger" shape="round" size="small" (click)="ingresar()">
+        Ingresar
+      </ion-button>
+      <br><br>
+      <a routerLink="/recuperar">Recuperar Contraseña</a>
+    </div>
   </div>
-  </ion-card-content>
+</ion-card-content>
