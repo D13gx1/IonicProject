@@ -17,7 +17,7 @@
     <ion-input [(ngModel)]="cuenta"></ion-input>
   </ion-item>
 
-  <ion-button expand="full" (click)="buscarPreguntaSecreta()">Buscar Pregunta Secreta</ion-button>
+  <ion-button expand="full" (click)="buscarPreguntaSecreta()">confirmar nombre</ion-button>
 
   <!-- Mostrar la pregunta secreta una vez que se haya encontrado el usuario -->
   <ion-item *ngIf="preguntaSecreta">
@@ -30,6 +30,6 @@
     <ion-input [(ngModel)]="respuestaSecreta"></ion-input>
   </ion-item>
 
-  <ion-button expand="full" (click)="verificarRespuestaSecreta()">Verificar Respuesta</ion-button>
+  <ion-button expand="full" *ngIf="preguntaSecreta" (click)="verificarRespuestaSecreta()">Verificar Respuesta</ion-button>
 
 </ion-content>
