@@ -21,8 +21,8 @@ export class LoginPage {
   {
     this.usuario = new Usuario();
     this.usuario.recibirUsuario(activatedRoute, router);
-    this.usuario.cuenta = 'chimuelo123';
-    this.usuario.password = '1234';
+    this.usuario.cuenta = '';
+    this.usuario.password = '';
   }
 
   ingresar() {
