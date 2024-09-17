@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Usuario } from 'src/app/model/usuario';
 
 @Component({
   selector: 'app-mi-info',
@@ -8,12 +9,13 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./mi-info.page.scss'],
 })
 export class MiInfoPage implements OnInit {
-  alertController: any;
+  
+  usuario: Usuario | undefined;
 
   constructor(
     private router: Router,
     private alertController: AlertController
-  ) { }
+  ) {}
 
   ngOnInit() {
   }
