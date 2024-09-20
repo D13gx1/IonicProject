@@ -21,7 +21,11 @@ const routes: Routes = [
         pathMatch: 'full'
       }
     ]
+  },  {
+    path: 'leerqr',
+    loadChildren: () => import('./leerqr/leerqr.module').then( m => m.LeerqrPageModule)
   }
+
 ];
 
 
