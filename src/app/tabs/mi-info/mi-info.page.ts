@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { Usuario } from 'src/app/model/usuario';
 import jsQR, { QRCode } from 'jsqr';
 import { Asistencia } from 'src/app/model/asistencia';
@@ -12,114 +12,98 @@ import { Asistencia } from 'src/app/model/asistencia';
 })
 export class MiInfoPage implements OnInit {
 
-  @ViewChild('video') private video!: ElementRef;
-  @ViewChild('canvas') private canvas!: ElementRef;
-  
-  public usuario: Usuario | undefined;
-  public asistencia: Asistencia | undefined = undefined;
-  public escaneando = false;
-  public datosQR: string = '';
+  @ViewChild('fileinput', {static: false}) private fileinput!: ElementRef;
+  @ViewChild('video', {static: false}) private video!: ElementRef;
+  @ViewChild('canvas', {static: false}) private canvas!: ElementRef;
 
-  constructor(
-    private router: Router,
-    private alertController: AlertController
-  ) {}
+  public escaneando = false;
+  public datosQR = '';
+  public loading : HTMLIonLoadingElement | null = null;
+
+  constructor(private loadingController: LoadingController) { }
 
   ngOnInit() {
-    this.comenzarEscaneoQR(); // Inicia el escaneo del QR al cargar la página
   }
 
-  // Método para mostrar la alerta de confirmación de logout
-  async confirmLogout() {
-    const alert = await this.alertController.create({
-      header: 'Confirmar salida',
-      message: '¿Estás seguro de que quieres cerrar sesión?',
-      buttons: [
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          cssClass: 'secondary',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        }, {
-          text: 'Salir',
-          handler: () => {
-            this.logout();
-          }
-        }
-      ]
-    });
-    await alert.present();
+  public obtenerDatosQr(source?: CanvasImageSource): boolean {
+    let w = 0;
+    let h = 0;
+    if (!source) {
+      this.canvas.nativeElement.width = this.video.nativeElement.videoWidth;
+      this.canvas.nativeElement.height = this.video.nativeElement.videoHeight;
+    }
+    w = this.canvas.nativeElement.width;
+    h = this.canvas.nativeElement.height;
+
+    const context: CanvasRenderingContext2D = this.canvas.nativeElement.getContext('2d');
+    context.drawImage(source ? source : this.video.nativeElement, 0, 0, w, h);
+    const img: ImageData = context.getImageData(0, 0, w, h);
+    const qrCode = jsQR(img.data, img.width, img.height, { inversionAttempts: 'dontInvert' });
+    if (qrCode) {
+      this.escaneando = false;
+      this.datosQR = qrCode.data;
+    }
+
+    return this.datosQR !== '';
   }
 
-  // Método para manejar la salida del usuario
-  logout() {
-    this.router.navigate(['/login']);
+  public cargarImagenDesdeArchivo(): void {
+    this.fileinput.nativeElement.click();
   }
 
-  // Función para comenzar el escaneo del QR
-  public async comenzarEscaneoQR() {
-    const mediaProvider: MediaProvider = await navigator.mediaDevices.getUserMedia({
-      video: { facingMode: 'environment' }
-    });
-    this.video.nativeElement.srcObject = mediaProvider;
+  public verificarArchivoConQr(event: Event): void {
+    const input = event.target as HTMLInputElement;  // Asegura que el target es un input
+    if (input && input.files && input.files.length > 0) {
+      const file = input.files[0];  // Accede al primer archivo
+      const img = new Image();
+      img.onload = () => {
+        this.obtenerDatosQr(img);
+      };
+      img.src = URL.createObjectURL(file);  // Carga la imagen
+    }
+  }
+
+  public  async comenzarEscaneoQR(){
+    // this.limpiarDatos
+    const mediaProvider: MediaProvider =await navigator.mediaDevices.getUserMedia({
+      video:{facingMode:'enviroment'}
+    })
+    this.video.nativeElement.srcObject =mediaProvider;
     this.video.nativeElement.setAttribute('playsinline', 'true');
+    this.loading = await this.loadingController.create({});
+    await this.loading.present();
     this.video.nativeElement.play();
-    this.escaneando = true;
     requestAnimationFrame(this.verificarVideo.bind(this));
   }
-
-  // Verificación del video en cada frame para capturar el QR
-  async verificarVideo() {
-    if (this.video.nativeElement.readyState === this.video.nativeElement.HAVE_ENOUGH_DATA) {
-      if (this.obtenerDatosQR() || !this.escaneando) return;
-      requestAnimationFrame(this.verificarVideo.bind(this));
-    } else {
-      requestAnimationFrame(this.verificarVideo.bind(this));
-    }
-  }
-
-  // Método para procesar los datos del QR
-  public obtenerDatosQR(): boolean {
-    const w: number = this.video.nativeElement.videoWidth;
-    const h: number = this.video.nativeElement.videoHeight;
-    this.canvas.nativeElement.width = w;
-    this.canvas.nativeElement.height = h;
-    const context: CanvasRenderingContext2D = this.canvas.nativeElement.getContext('2d', { willReadFrequently: true });
-    context.drawImage(this.video.nativeElement, 0, 0, w, h);
-    const img: ImageData = context.getImageData(0, 0, w, h);
-    let qrCode: QRCode | null = jsQR(img.data, w, h, { inversionAttempts: 'dontInvert' });
-    if (qrCode) {
-      if (qrCode.data !== '') {
-        this.escaneando = false;
-        this.mostrarDatosQROrdenados(qrCode.data);
-        return true;
+  async verificarVideo(){
+    if (this.video.nativeElement.readyState === this.video.nativeElement.HAVE_ENOUGH_DATA){
+      if (this.loading){
+        await this.loading.dismiss();
+        this.loading = null;
+        this.escaneando =true;
       }
+      if(this.obtenerDatosQr()){
+        console.log('datos obtenidos');
+      } else {
+        if(this.escaneando){
+          console.log('escaneando...');
+          requestAnimationFrame(this.verificarVideo.bind(this));
+        }
+      }
+    } else {console.log('video aún no tiene datos');
+       requestAnimationFrame(this.verificarVideo.bind(this));
     }
-    return false;
   }
-
-  // Mostrar los datos del QR escaneado
-  public mostrarDatosQROrdenados(datosQR: string): void {
-    this.datosQR = datosQR;
-    this.asistencia = JSON.parse(datosQR);
-    this.presentAlert('QR Escaneado', 'El QR se ha escaneado correctamente.');
-  }
-
-  // Método para mostrar una alerta
-  public async presentAlert(header: string, message: string) {
-    const alert = await this.alertController.create({
-      header,
-      message,
-      buttons: ['OK']
-    });
-    await alert.present();
-  }
-
-  // Método para detener el escaneo
-  public detenerEscaneoQR(): void {
+  
+  public detenerEscaneoQR():void{
     this.escaneando = false;
+  }
+
+  public limpiarDatos():void{
+    this.escaneando=false;
+    this.datosQR='';
+    this.loading=null;
+    (document.getElementById('input-file')as HTMLInputElement).value='';
   }
 
 }

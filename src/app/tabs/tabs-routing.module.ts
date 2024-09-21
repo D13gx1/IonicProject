@@ -24,6 +24,10 @@ const routes: Routes = [
   },  {
     path: 'leerqr',
     loadChildren: () => import('./leerqr/leerqr.module').then( m => m.LeerqrPageModule)
+  },
+  {
+    path: 'settings',
+    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
   }
 
 ];

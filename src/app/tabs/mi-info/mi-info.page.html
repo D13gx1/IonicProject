@@ -1,81 +1,43 @@
+
+
 <ion-header>
-  <ion-toolbar color="primary">
-    <ion-title>
-      Sistema de Asistencia DUOC
-    </ion-title>
+  <ion-toolbar>
+    <ion-title color="dark">Qr Lecture</ion-title>
   </ion-toolbar>
 </ion-header>
+<br>
+<ion-content >
+  <input hidden #fileinput type="file" id="input-file" accept="image/*;capture=camera" (change)="verificarArchivoConQr($event)">
+  <ion-button (click)="cargarImagenDesdeArchivo()" expand="full" shape="round">
+    <ion-icon name="camera"></ion-icon> Cargar Imagen QR
+  </ion-button>
 
-<ion-content [fullscreen]="true" class="ion-padding-horizontal ion-text-center">
-  <div class="centrar">
-    <div class="enmarcar">
+  <ion-button *ngIf="!escaneando"(click)="comenzarEscaneoQR()" expand="full" shape="round">
+    <ion-icon slot="start" name="videocam-outline"></ion-icon>
+    Comenzar Escaneo de QR
+  </ion-button>
 
-      <h1 *ngIf="!datosQR"> Registra tu asistencia a clases </h1>
+  <ion-button (click)="detenerEscaneoQR()" expand="full" shape="round">
+    <ion-icon slot="start" name="stopcircle-outline"></ion-icon>
+    Detener Escaneo de QR
 
-      <video #vi  deo [hidden]="!escaneando" style="width: 100%"></video>
-      <canvas #canvas hidden></canvas>
+  </ion-button>
 
-      <div *ngIf="datosQR">
-        <h1> Has quedado presente en tu clase </h1>
-        <table>
-          <tbody>
-            <tr>
-              <td>Bloque Inicio</td>
-              <td>{{ asistencia!.bloqueInicio }}</td>
-            </tr>
-            <tr>
-              <td>Bloque Término</td>
-              <td>{{ asistencia!.bloqueTermino }}</td>
-            </tr>
-            <tr>
-              <td>Día</td>
-              <td>{{ asistencia!.dia }}</td>
-            </tr>
-            <tr>
-              <td>Hora Inicio</td>
-              <td>{{ asistencia!.horaInicio }}</td>
-            </tr>
-            <tr>
-              <td>Hora Fin</td>
-              <td>{{ asistencia!.horaFin }}</td>
-            </tr>
-            <tr>
-              <td>ID Asignatura</td>
-              <td>{{ asistencia!.idAsignatura }}</td>
-            </tr>
-            <tr>
-              <td>Nombre Asignatura</td>
-              <td>{{ asistencia!.nombreAsignatura }}</td>
-            </tr>
-            <tr>
-              <td>Nombre Profesor</td>
-              <td>{{ asistencia!.nombreProfesor }}</td>
-            </tr>
-            <tr>
-              <td>Sección</td>
-              <td>{{ asistencia!.seccion }}</td>
-            </tr>
-            <tr>
-              <td>Sede</td>
-              <td>{{ asistencia!.sede }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class="margin-top">
-        <ion-button *ngIf="!escaneando" (click)="comenzarEscaneoQR()" shape="round">
-          <ion-icon slot="start" name="videocam-outline"></ion-icon>
-          Comenzar Escaneo de QR
-        </ion-button>
-  
-        <ion-button *ngIf="escaneando" (click)="detenerEscaneoQR()" shape="round">
-          <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
-          Detener escaneo de QR
-        </ion-button>
-      </div>
+  <ion-button (click)="limpiarDatos()" expand="full" shape="round">
+    <ion-icon slot="start" name="trash-outline"></ion-icon>
+    Limpiar Datos
+  </ion-button>
 
-    </div>
-  </div>
+  <video #video [hidden]="!escaneando" width="100%"></video>
+  <canvas #canvas [hidden]> </canvas>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Codigo QR</ion-card-title>
+    </ion-card-header>
+  <ion-card-content >  <br>
+    Datos:{{ datosQR}}
+    <br>
+    Escaneando: {{escaneando}}</ion-card-content>
+      
+  </ion-card>
 </ion-content>
-
-
