@@ -1,5 +1,6 @@
+// src>app>tabs>tabs-routing.module.ts
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
 
 const routes: Routes = [
@@ -16,23 +17,25 @@ const routes: Routes = [
         loadChildren: () => import('./mi-info/mi-info.module').then(m => m.MiInfoPageModule)
       },
       {
+        path: 'settings',
+        loadChildren: () => import('./settings/settings.module').then(m => m.SettingsPageModule)
+      },
+      {
         path: '',
         redirectTo: '/tabs/inicio',
         pathMatch: 'full'
       }
     ]
   },
-
   {
-    path: 'settings',
-    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
+    path: '',
+    redirectTo: '/tabs/inicio',
+    pathMatch: 'full'
   }
-
 ];
-
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule],
+  exports: [RouterModule]
 })
 export class TabsPageRoutingModule {}

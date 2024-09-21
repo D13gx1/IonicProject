@@ -1,13 +1,25 @@
-<ion-header [translucent]="true">
+<!-- src/app/tabs/settings/settings.page.html -->
+<ion-header [translucent]="true"> 
   <ion-toolbar>
-    <ion-title>settings</ion-title>
+    <ion-title>Settings</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">settings</ion-title>
+      <ion-title size="large">Settings</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-list>
+    <ion-item>
+      <ion-label>Modo oscuro</ion-label>
+      <ion-toggle
+        slot="end"
+        [checked]="isDarkMode"
+        (ionChange)="toggleDarkMode($event)">
+      </ion-toggle>
+    </ion-item>
+  </ion-list>
 </ion-content>

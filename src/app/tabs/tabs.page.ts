@@ -1,3 +1,4 @@
+//src>app>tabs>tabs.page.ts
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -11,5 +12,4 @@ export class TabsPage implements OnInit {
 
   ngOnInit() {
   }
-
 }
