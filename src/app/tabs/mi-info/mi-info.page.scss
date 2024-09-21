@@ -1,0 +1,11 @@
+ion-button {
+  --background: transparent; /* Fondo transparente */
+  --color: var(--ion-color-primary); /* Color del icono */
+  --border-radius: 50px; /* Bordes redondeados */
+  --padding: 0%; /* Sin padding */
+  width: 100%; /* Ocupa el 100% del ancho del contenedor */
+  height: 100px; /* Puedes ajustar la altura según tu necesidad */
+  margin-left: 10px; /* Espaciado entre botones */
+  padding-right: 15px; 
+  margin: 10px;
+}
