@@ -1,19 +1,81 @@
-  <!-- src/app/tabs/mi-info/mi-info.page.html -->
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Mi info</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="confirmLogout()"> 
-        <ion-icon name="exit"></ion-icon>
-      </ion-button>
-      </ion-buttons>
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+      Sistema de Asistencia DUOC
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">mi-info</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="true" class="ion-padding-horizontal ion-text-center">
+  <div class="centrar">
+    <div class="enmarcar">
+
+      <h1 *ngIf="!datosQR"> Registra tu asistencia a clases </h1>
+
+      <video #vi  deo [hidden]="!escaneando" style="width: 100%"></video>
+      <canvas #canvas hidden></canvas>
+
+      <div *ngIf="datosQR">
+        <h1> Has quedado presente en tu clase </h1>
+        <table>
+          <tbody>
+            <tr>
+              <td>Bloque Inicio</td>
+              <td>{{ asistencia!.bloqueInicio }}</td>
+            </tr>
+            <tr>
+              <td>Bloque Término</td>
+              <td>{{ asistencia!.bloqueTermino }}</td>
+            </tr>
+            <tr>
+              <td>Día</td>
+              <td>{{ asistencia!.dia }}</td>
+            </tr>
+            <tr>
+              <td>Hora Inicio</td>
+              <td>{{ asistencia!.horaInicio }}</td>
+            </tr>
+            <tr>
+              <td>Hora Fin</td>
+              <td>{{ asistencia!.horaFin }}</td>
+            </tr>
+            <tr>
+              <td>ID Asignatura</td>
+              <td>{{ asistencia!.idAsignatura }}</td>
+            </tr>
+            <tr>
+              <td>Nombre Asignatura</td>
+              <td>{{ asistencia!.nombreAsignatura }}</td>
+            </tr>
+            <tr>
+              <td>Nombre Profesor</td>
+              <td>{{ asistencia!.nombreProfesor }}</td>
+            </tr>
+            <tr>
+              <td>Sección</td>
+              <td>{{ asistencia!.seccion }}</td>
+            </tr>
+            <tr>
+              <td>Sede</td>
+              <td>{{ asistencia!.sede }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="margin-top">
+        <ion-button *ngIf="!escaneando" (click)="comenzarEscaneoQR()" shape="round">
+          <ion-icon slot="start" name="videocam-outline"></ion-icon>
+          Comenzar Escaneo de QR
+        </ion-button>
+  
+        <ion-button *ngIf="escaneando" (click)="detenerEscaneoQR()" shape="round">
+          <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
+          Detener escaneo de QR
+        </ion-button>
+      </div>
+
+    </div>
+  </div>
 </ion-content>
+
+
