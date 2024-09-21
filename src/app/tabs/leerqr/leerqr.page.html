@@ -63,12 +63,12 @@
         </table>
       </div>
       <div class="margin-top">
-        <ion-button *ngIf="!escaneando" (click)="comenzarEscaneoQR()" shape="round">
+        <ion-button *ngIf="!escaneando" (click)="comenzarEscaneoQR()">
           <ion-icon slot="start" name="videocam-outline"></ion-icon>
           Comenzar Escaneo de QR
         </ion-button>
   
-        <ion-button *ngIf="escaneando" (click)="detenerEscaneoQR()" shape="round">
+        <ion-button *ngIf="escaneando" (click)="detenerEscaneoQR()">
           <ion-icon slot="start" name="stop-circle-outline"></ion-icon>
           Detener escaneo de QR
         </ion-button>
