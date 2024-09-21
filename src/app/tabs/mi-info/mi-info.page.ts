@@ -19,11 +19,45 @@ export class MiInfoPage implements OnInit {
   public escaneando = false;
   public datosQR = '';
   public loading : HTMLIonLoadingElement | null = null;
+  alertController: any;
+  router: any;
 
   constructor(private loadingController: LoadingController) { }
 
   ngOnInit() {
   }
+    // Función para mostrar una ventana de confirmación antes de cerrar sesión
+    async confirmLogout() {
+      const alert = await this.alertController.create({
+        header: 'Confirmar salida',
+        message: '¿Estás seguro de que quieres cerrar sesión?',
+        buttons: [
+          {
+            text: 'Cancelar',
+            role: 'cancel',
+            cssClass: 'secondary',
+            handler: () => {
+              console.log('Cancel clicked');
+            }
+          }, {
+            text: 'Salir',
+            handler: () => {
+              this.logout();
+            }
+          }
+        ]
+      });
+  
+      await alert.present();
+    }
+  
+    // Función para manejar la salida del usuario
+    logout() {
+      // Aquí puedes añadir la lógica para cerrar sesión, por ejemplo:
+      // this.authService.logout();
+      // Redirigir al login o a otra página
+      this.router.navigate(['/login']);
+    }
 
   public obtenerDatosQr(source?: CanvasImageSource): boolean {
     let w = 0;

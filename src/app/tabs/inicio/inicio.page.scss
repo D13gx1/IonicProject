@@ -11,8 +11,8 @@ ion-toolbar {
 }
 
 ion-title {
-  font-size: 20px; /* Tamaño de fuente del título */
-  font-weight: bold; /* Negrita del título */
+  font-size: 22px; /* Tamaño de fuente del título */
+  color: #333032;
 }
 
 /* Estilos para el contenido */
@@ -51,12 +51,6 @@ ion-card-content {
   text-align: center; /* Alinear el texto al centro */
 }
 
-h1 {
-  font-size: 20px; /* Tamaño de fuente del h1 */
-  font-weight: bold; /* Negrita del h1 */
-  color: #333; /* Color del texto del h1 */
-}
-
 ion-button {
   --background: transparent; /* Fondo transparente */
   --color: var(--ion-color-primary); /* Color del icono */
@@ -80,4 +74,12 @@ ion-icon {
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #f4f4f4;
+}
+
+.logout-button {
+  --background: var(--ion-color-danger); /* Cambia el fondo a rojo, por ejemplo */
+  --color: rgb(28, 28, 29); /* Cambia el color del icono a blanco */
+  --border-radius: 50%; /* Cambia los bordes si lo deseas */
+  width: 50px; /* Ajusta el tamaño del botón */
+  height: 50px;
 }

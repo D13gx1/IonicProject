@@ -9,3 +9,11 @@ ion-button {
   padding-right: 15px; 
   margin: 10px;
 }
+
+.logout-button {
+  --background: var(--ion-color-danger); /* Cambia el fondo a rojo, por ejemplo */
+  --color: rgb(29, 27, 27); /* Cambia el color del icono a blanco */
+  --border-radius: 50%; /* Cambia los bordes si lo deseas */
+  width: 50px; /* Ajusta el tamaño del botón */
+  height: 50px;
+}
