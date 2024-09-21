@@ -1,3 +1,4 @@
+//src>app>tabs>inicio>inicio.page.ts
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../model/usuario';
 import { Router } from '@angular/router';

@@ -2,3 +2,29 @@
 // http://ionicframework.com/docs/theming/
 
 /** Ionic CSS Variables **/
+// src/theme/variables.scss
+:root {
+  --ion-color-primary: #3880ff;
+  --ion-color-primary-rgb: 56, 128, 255;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #3171e0;
+  --ion-color-primary-tint: #4c8dff;
+
+  /* Otros colores claros */
+}
+
+.dark {
+  --ion-background-color: #121212;
+  --ion-background-color-rgb: 18, 18, 18;
+  --ion-text-color: #ffffff;
+
+  --ion-color-primary: #bb86fc;
+  --ion-color-primary-rgb: 187, 134, 252;
+  --ion-color-primary-contrast: #121212;
+  --ion-color-primary-contrast-rgb: 18, 18, 18;
+  --ion-color-primary-shade: #a75fe8;
+  --ion-color-primary-tint: #c996f6;
+
+  /* Otros colores oscuros */
+}
