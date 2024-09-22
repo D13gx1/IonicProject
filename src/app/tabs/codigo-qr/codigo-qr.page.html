@@ -1,6 +1,7 @@
+<!-- src/app/tabs/mi-info/mi-info.page.html -->
 <ion-header>
   <ion-toolbar>
-    <ion-title color="dark">Escaneo de QR</ion-title>
+    <ion-title color="dark">Lectura de QR</ion-title>
     <ion-buttons slot="end">
       <ion-button class="logout-button" (click)="confirmLogout()"> 
         <ion-icon name="exit"></ion-icon>
@@ -30,9 +31,12 @@
     Limpiar Datos
   </ion-button>
 
-  <ion-card *ngIf="datosQR" [@fadeOut]="estadoAnimacion">
+  <video #video [hidden]="!escaneando" width="100%"></video>
+  <canvas #canvas [hidden]> </canvas>
+
+  <ion-card *ngIf="datosQR">
     <ion-card-header>
-      <ion-card-title>Datos QR</ion-card-title>
+      <ion-card-title>Código QR</ion-card-title>
     </ion-card-header>
     <ion-card-content>
       <table>

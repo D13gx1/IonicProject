@@ -2,22 +2,14 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertController, LoadingController } from '@ionic/angular';
 import jsQR from 'jsqr';
-import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-codigo-qr',
   templateUrl: './codigo-qr.page.html',
   styleUrls: ['./codigo-qr.page.scss'],
-  animations: [
-    trigger('fadeOut', [
-      state('visible', style({ opacity: 1, transform: 'translateY(0)' })),
-      state('hidden', style({ opacity: 0, transform: 'translateY(20px)' })),
-      transition('visible => hidden', [animate('500ms ease-out')]),
-    ])
-  ]
 })
 export class CodigoQrPage implements OnInit {
-  
+
   @ViewChild('fileinput', { static: false }) private fileinput!: ElementRef;
   @ViewChild('video', { static: false }) private video!: ElementRef;
   @ViewChild('canvas', { static: false }) private canvas!: ElementRef;
@@ -25,7 +17,6 @@ export class CodigoQrPage implements OnInit {
   public escaneando = false;
   public datosQR = '';
   public loading: HTMLIonLoadingElement | null = null;
-  public estadoAnimacion = 'visible';
 
   // Variables para almacenar los datos del QR
   public sede: string | undefined;
@@ -85,7 +76,7 @@ export class CodigoQrPage implements OnInit {
     if (qrCode) {
       this.escaneando = false;
       this.datosQR = qrCode.data;
-      this.mostrarDatosQROrdenados(this.datosQR);
+      this.mostrarDatosQROrdenados(this.datosQR);  // Llama a la función para organizar los datos
     }
 
     return this.datosQR !== '';
@@ -145,24 +136,10 @@ export class CodigoQrPage implements OnInit {
   }
 
   public limpiarDatos(): void {
-    this.estadoAnimacion = 'hidden';
-
-    setTimeout(() => {
-      this.escaneando = false;
-      this.datosQR = '';
-      this.loading = null;
-      this.sede = undefined;
-      this.idAsignatura = undefined;
-      this.seccion = undefined;
-      this.nombreAsignatura = undefined;
-      this.nombreProfesor = undefined;
-      this.dia = undefined;
-      this.horaInicio = undefined;
-      this.horaFin = undefined;
-      this.bloqueInicio = undefined;
-      this.bloqueTermino = undefined;
-      this.estadoAnimacion = 'visible';
-    }, 500);
+    this.escaneando = false;
+    this.datosQR = '';
+    this.loading = null;
+    (document.getElementById('input-file') as HTMLInputElement).value = '';
   }
 
   public mostrarDatosQROrdenados(datosQR: string): void {
