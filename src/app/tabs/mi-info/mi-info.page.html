@@ -6,11 +6,9 @@
 
 <ion-content>
   <div *ngIf="usuario">
-    <img [src]="usuario.fotoUrl" alt="Foto de perfil" />
+    
     <h2>¡Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }}!</h2>
-    <p><strong>Cuenta:</strong> {{ usuario.cuenta }}</p>
-    <p><strong>Correo:</strong> {{ usuario.correo }}</p>
-    <p><strong>Nivel Educacional:</strong> {{ usuario.nivelEducacional.getEducacion() }}</p>
-    <p><strong>Fecha de Nacimiento:</strong> {{ usuario.fechaNacimiento | date }}</p>
+
+    
   </div>
 </ion-content>
