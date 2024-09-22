@@ -1,4 +1,4 @@
-// src>app>tabs>tabs-routing.module.ts
+// src/app/tabs/tabs-routing.module.ts
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
@@ -17,6 +17,10 @@ const routes: Routes = [
         loadChildren: () => import('./mi-info/mi-info.module').then(m => m.MiInfoPageModule)
       },
       {
+        path: 'codigo-qr',
+        loadChildren: () => import('./codigo-qr/codigo-qr.module').then(m => m.CodigoQrPageModule)
+      },
+      {
         path: 'settings',
         loadChildren: () => import('./settings/settings.module').then(m => m.SettingsPageModule)
       },
@@ -28,7 +32,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: '',
+    path: '', 
     redirectTo: '/tabs/inicio',
     pathMatch: 'full'
   }

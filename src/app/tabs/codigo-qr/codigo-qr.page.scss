@@ -1,0 +1,32 @@
+ion-button {
+  --background: transparent; /* Fondo transparente */
+  --color: #333; /* Color del icono */
+  --border-radius: 50px; /* Bordes redondeados */
+  --padding: 0%; /* Sin padding */
+  width: 100%; /* Ocupa el 100% del ancho del contenedor */
+  height: 100px; /* Puedes ajustar la altura según tu necesidad */
+  margin-left: 10px; /* Espaciado entre botones */
+  padding-right: 15px; 
+  margin: 10px;
+}
+
+.logout-button {
+  --background: var(--ion-color-danger); /* Cambia el fondo a rojo, por ejemplo */
+  --color: rgb(29, 27, 27); /* Cambia el color del icono a blanco */
+  --border-radius: 50%; /* Cambia los bordes si lo deseas */
+  width: 50px; /* Ajusta el tamaño del botón */
+  height: 50px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #f2f2f2;
+}

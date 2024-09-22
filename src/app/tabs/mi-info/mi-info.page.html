@@ -1,48 +1,16 @@
-
-
 <ion-header>
   <ion-toolbar>
-    <ion-title color="dark">Lectura de QR 𓆝 
-     </ion-title>
-    <ion-buttons slot="end">
-      <ion-button class="logout-button" (click)="confirmLogout()"> 
-        <ion-icon name="exit"></ion-icon>
-      </ion-button>
-    </ion-buttons>
+    <ion-title>Mi Información</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content >
-  <input hidden #fileinput type="file" id="input-file" accept="image/*;capture=camera" (change)="verificarArchivoConQr($event)">
-  <ion-button (click)="cargarImagenDesdeArchivo()" expand="full" shape="round">
-    <ion-icon name="camera"></ion-icon> Cargar Imagen QR
-  </ion-button>
 
-  <ion-button *ngIf="!escaneando"(click)="comenzarEscaneoQR()" expand="full" shape="round">
-    <ion-icon slot="start" name="videocam-outline"></ion-icon>
-    Comenzar Escaneo de QR
-  </ion-button>
-
-  <ion-button (click)="detenerEscaneoQR()" expand="full" shape="round">
-    <ion-icon slot="start" name="stopcircle-outline"></ion-icon>
-    Detener Escaneo de QR
-
-  </ion-button>
-
-  <ion-button (click)="limpiarDatos()" expand="full" shape="round">
-    <ion-icon slot="start" name="trash-outline"></ion-icon>
-    Limpiar Datos
-  </ion-button>
-
-  <video #video [hidden]="!escaneando" width="100%"></video>
-  <canvas #canvas [hidden]> </canvas>
-  <ion-card>
-    <ion-card-header>
-      <ion-card-title>Codigo QR</ion-card-title>
-    </ion-card-header>
-  <ion-card-content >  <br>
-    Datos: {{ datosQR}}
-    <br>
-    Escaneando: {{escaneando}}</ion-card-content>
-      
-  </ion-card>
+<ion-content>
+  <div *ngIf="usuario">
+    <img [src]="usuario.fotoUrl" alt="Foto de perfil" />
+    <h2>¡Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }}!</h2>
+    <p><strong>Cuenta:</strong> {{ usuario.cuenta }}</p>
+    <p><strong>Correo:</strong> {{ usuario.correo }}</p>
+    <p><strong>Nivel Educacional:</strong> {{ usuario.nivelEducacional.getEducacion() }}</p>
+    <p><strong>Fecha de Nacimiento:</strong> {{ usuario.fechaNacimiento | date }}</p>
+  </div>
 </ion-content>
