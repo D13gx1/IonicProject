@@ -1,8 +1,6 @@
-<!--src>app>tabs>inicio>inicio.page.html> -->
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Inicio 𓆝 
-     </ion-title>
+  <ion-toolbar color="duoc-azul">
+    <ion-title>Inicio 𓆝</ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="confirmLogout()"> 
         <ion-icon name="exit"></ion-icon>
@@ -12,26 +10,28 @@
 </ion-header>
 
 <ion-content>
+  <!-- Bienvenida con animación -->
   <ion-card>
     <ion-card-header>
-      <ion-card-title>
+      <ion-card-title [@fadeIn]="isVisible ? 'visible' : 'hidden'">
         <h1 *ngIf="usuario?.cuenta !== ''">
           ¡Bienvenido(a) {{ usuario?.nombre }} {{ usuario?.apellido }}!
         </h1>
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <div class="profile-container">
+      <div class="profile-container" [@fadeIn]="isVisible ? 'visible' : 'hidden'">
         <img *ngIf="usuario?.fotoUrl" [src]="usuario?.fotoUrl" alt="Foto de perfil" class="profile-photo"/>
       </div>
-    <!-- Aquí puedes añadir más contenido si es necesario -->
     </ion-card-content>
   </ion-card>
+
+  <!-- Información adicional -->
   <ion-card>
     <ion-card-content>
-      <h3>En caso de querer ver tu asistencia dirigete a Mi Info</h3>
-      <h3>Para cambiar a modo oscuro dirigete a Configuración </h3>
-      <h1> 𓆝 𓆟 𓆞 𓆝 𓆟</h1>
+      <h3>En caso de querer ver tu asistencia dirígete a Mi Info</h3>
+      <h3>Para cambiar a modo oscuro dirígete a Configuración</h3>
+      <h1>𓆝 𓆟 𓆞 𓆝 𓆟</h1>
     </ion-card-content>
   </ion-card>
 </ion-content>

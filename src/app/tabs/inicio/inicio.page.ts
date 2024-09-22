@@ -1,17 +1,33 @@
-//src>app>tabs>inicio>inicio.page.ts
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../model/usuario';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.page.html',
   styleUrls: ['./inicio.page.scss'],
+  animations: [
+    trigger('fadeIn', [
+      state('hidden', style({
+        opacity: 0,
+        transform: 'translateY(50px)'
+      })),
+      state('visible', style({
+        opacity: 1,
+        transform: 'translateY(0)'
+      })),
+      transition('hidden => visible', [
+        animate('1s ease-in-out')
+      ])
+    ])
+  ]
 })
 export class InicioPage implements OnInit {
 
   usuario: Usuario | undefined;
+  isVisible: boolean = false;
 
   constructor(
     private router: Router,
@@ -26,6 +42,11 @@ export class InicioPage implements OnInit {
       const password = nav.extras.state['password'];
       this.usuario = Usuario.buscarUsuarioValido(cuenta, password);
     }
+
+    // Hacemos visible el contenido después de un pequeño retraso para la animación
+    setTimeout(() => {
+      this.isVisible = true;
+    }, 200);
   }
 
   // Función para mostrar una ventana de confirmación antes de cerrar sesión
@@ -55,9 +76,6 @@ export class InicioPage implements OnInit {
 
   // Función para manejar la salida del usuario
   logout() {
-    // Aquí puedes añadir la lógica para cerrar sesión, por ejemplo:
-    // this.authService.logout();
-    // Redirigir al login o a otra página
     this.router.navigate(['/login']);
   }
 }
