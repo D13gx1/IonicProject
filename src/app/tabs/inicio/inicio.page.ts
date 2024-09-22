@@ -41,6 +41,7 @@ export class InicioPage implements OnInit {
       const cuenta = nav.extras.state['cuenta'];
       const password = nav.extras.state['password'];
       this.usuario = Usuario.buscarUsuarioValido(cuenta, password);
+      
     }
 
     // Hacemos visible el contenido después de un pequeño retraso para la animación
