@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../model/usuario';  // Importar la clase Usuario desde el modelo
 import { AlertController } from '@ionic/angular';  // Importar el controlador de alertas de Ionic
+import { Router } from '@angular/router';  // Importar el servicio Router para la navegación
 
 @Component({
   selector: 'app-recuperar',
@@ -14,7 +15,10 @@ export class RecuperarPage implements OnInit {
   respuestaSecreta: string = '';  // Almacena la respuesta secreta ingresada por el usuario
   usuario: Usuario | undefined;  // Variable para almacenar el usuario encontrado
 
-  constructor(private alertController: AlertController) { }  // Constructor con inyección de AlertController
+  constructor(
+    private alertController: AlertController,
+    private router: Router  // Inyectar el Router para navegar entre páginas
+  ) { }
 
   ngOnInit() {
     // Se ejecuta al iniciar la página
@@ -38,16 +42,19 @@ export class RecuperarPage implements OnInit {
   // Método para verificar si la respuesta secreta ingresada es correcta
   verificarRespuestaSecreta() {
     if (this.usuario && this.respuestaSecreta === this.usuario.respuestaSecreta) {
-      // Si la respuesta secreta es correcta, muestra un mensaje con la contraseña
-      this.presentAlert('Verificación Exitosa', 
-        `La respuesta secreta es correcta. Tu contraseña es: ${this.usuario.password}`);
+      // Si la respuesta secreta es correcta, redirigir a la página de correcto con la contraseña
+      this.router.navigate(['/correcto'], {
+        state: { password: this.usuario.password }
+      });
     } else {
-      // Si la respuesta secreta es incorrecta, muestra un mensaje de error
-      this.presentAlert('Error', 'La respuesta secreta es incorrecta.');
+      // Si la respuesta secreta es incorrecta, redirigir a la página de incorrecto
+      this.router.navigate(['/incorrecto']);
     }
   }
 
-  // Método para mostrar un alerta con un mensaje personalizado
+
+
+  // Método para mostrar un alerta con un mensaje personalizado (en caso de necesitarlo)
   async presentAlert(header: string, message: string) {
     const alert = await this.alertController.create({
       header,

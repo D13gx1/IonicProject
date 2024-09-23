@@ -103,12 +103,12 @@ export class Usuario extends Persona {
   public static getListaUsuarios(): Usuario[] {
     return [
       Usuario.getNewUsuario(
-        'robocop', 
+        'atorres', 
         'atorres@duocuc.cl', 
         '1234', 
         '¿Cuál es tu animal favorito?', 
         'gato', 
-        'robocop', 
+        'Ana', 
         'Torres', 
         NivelEducacional.buscarNivelEducacional(6)!,
         new Date(2000, 0, 1),
@@ -129,14 +129,14 @@ export class Usuario extends Persona {
       Usuario.getNewUsuario(
         'cmujica',
         'cmujica@duocuc.cl',
-        '0987',
+        '4321',
         '¿Cuál es tu vehículo favorito?',
         'moto',
         'Carla',
         'Mujica',
         NivelEducacional.buscarNivelEducacional(6)!,
         new Date(2000, 2, 1),
-        'path/to/cmujica.jpg'  // Foto de ejemplo
+        '../../assets/img/abed.jpg'  // Foto de ejemplo
       ),
     ]
   }
