@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Usuario } from '../../model/usuario';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { NivelEducacional } from 'src/app/model/nivel-educacional';
 
 @Component({
   selector: 'app-mi-info',
@@ -11,6 +12,7 @@ import { AlertController } from '@ionic/angular';
 export class MiInfoPage {
   usuario: Usuario | undefined;
   isVisible: boolean = false;
+  
 
   constructor(
     private router: Router,
@@ -26,5 +28,29 @@ export class MiInfoPage {
       this.usuario = Usuario.buscarUsuarioValido(cuenta, password);
       console.log(this.usuario)
     }
+}
+
+async confirmLogout() {
+  const alert = await this.alertController.create({
+    header: 'Confirmar salida',
+    message: '¿Estás seguro de que quieres cerrar sesión?',
+    buttons: [
+      {
+        text: 'Cancelar',
+        role: 'cancel',
+        cssClass: 'secondary',
+      }, {
+        text: 'Salir',
+        handler: () => {
+          this.logout();
+        }
+      }
+    ]
+  });
+  await alert.present();
+}
+
+logout() {
+  this.router.navigate(['/login']);
 }
 }

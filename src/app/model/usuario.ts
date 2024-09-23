@@ -115,7 +115,7 @@ export class Usuario extends Persona {
         '../../assets/img/Robocop.jpg'  // Foto de ejemplo
       ),
       Usuario.getNewUsuario(
-        'chimuelo123',
+        'chimuelo',
         'chimuelo123@duocuc.cl',
         '1234',
         '¿Cuál es tu postre favorito?',
@@ -123,7 +123,7 @@ export class Usuario extends Persona {
         'Chimuelo',
         'Alejandro',
         NivelEducacional.buscarNivelEducacional(5)!,
-        new Date(2000, 1, 1),
+        new Date(2008, 10, 5),
         '../../assets/img/Chimuelo.jpg'  // Foto de ejemplo
       ),
       Usuario.getNewUsuario(

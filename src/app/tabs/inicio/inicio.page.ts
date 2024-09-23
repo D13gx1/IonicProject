@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { Usuario } from '../../model/usuario';
 import { Router } from '@angular/router';
-import { AlertController } from '@ionic/angular';
+import { AlertController, AnimationController } from '@ionic/angular'; // Asegúrate de importar AnimationController
 import { trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
@@ -24,14 +24,16 @@ import { trigger, state, style, animate, transition } from '@angular/animations'
     ])
   ]
 })
-export class InicioPage implements OnInit {
+export class InicioPage implements OnInit, AfterViewInit {
 
   usuario: Usuario | undefined;
   isVisible: boolean = false;
+  itemTitulo: any; // Asegúrate de que esto esté correctamente tipado
 
   constructor(
     private router: Router,
-    private alertController: AlertController
+    private alertController: AlertController,
+    private animationController: AnimationController // Cambia 'any' a 'AnimationController'
   ) {}
 
   ngOnInit() {
@@ -41,13 +43,27 @@ export class InicioPage implements OnInit {
       const cuenta = nav.extras.state['cuenta'];
       const password = nav.extras.state['password'];
       this.usuario = Usuario.buscarUsuarioValido(cuenta, password);
-      
     }
 
     // Hacemos visible el contenido después de un pequeño retraso para la animación
     setTimeout(() => {
       this.isVisible = true;
     }, 200);
+  }
+
+  ngAfterViewInit(): void {
+    if (this.itemTitulo) {
+      const animation = this.animationController
+        .create()
+        .addElement(this.itemTitulo.nativeElement)
+        .iterations(Infinity)
+        .duration(6000)
+        .fromTo('transform', 'translate(0%)', 'translate(100%)')
+        .fromTo('opacity', 0.2, 1);
+
+      animation.play();
+    }
+    this.createPageTurnAnimation();
   }
 
   // Función para mostrar una ventana de confirmación antes de cerrar sesión
@@ -78,5 +94,10 @@ export class InicioPage implements OnInit {
   // Función para manejar la salida del usuario
   logout() {
     this.router.navigate(['/login']);
+  }
+
+  // Asegúrate de implementar esta función
+  createPageTurnAnimation() {
+    // Lógica de animación de cambio de página
   }
 }

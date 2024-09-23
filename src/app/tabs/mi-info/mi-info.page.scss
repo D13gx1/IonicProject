@@ -1,6 +1,36 @@
-.perfil-foto {
-  width: 100px; /* Ajusta el tamaño según tus necesidades */
-  height: 100px; /* Ajusta el tamaño según tus necesidades */
-  border-radius: 50%; /* Hace que la imagen sea circular */
-  object-fit: cover; /* Mantiene la proporción de la imagen */
+.profile-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile-photo {
+  width: 125px; /* Ajusta el tamaño aquí */
+  height: 125px; /* Asegúrate de que el alto y el ancho sean iguales */
+  border-radius: 50%; /* Hace la imagen redonda */
+  object-fit: cover; /* Asegura que la imagen se recorte correctamente */
+  border: 2px solid #ccc; /* Opcional: agrega un borde alrededor de la imagen */
+}
+
+:host {
+  ion-card-title {
+    color: black; // Color por defecto en modo claro
+  }
+}
+:host {
+  ion-title {
+    color: black; // Color por defecto en modo claro
+  }
+}
+
+:host-context(.dark) {
+  ion-card-title {
+    color: white; // Color en modo oscuro
+  }
+}
+
+:host-context(.dark) {
+  ion-title {
+    color: white; // Color en modo oscuro
+  }
 }

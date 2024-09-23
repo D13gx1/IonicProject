@@ -1,14 +1,50 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Mi Información</ion-title>
+    <ion-title color="dark">Mi Información</ion-title>
+    <ion-buttons slot="end">
+      <ion-button class="logout-button" (click)="confirmLogout()"> 
+        <ion-icon name="exit"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
+    
 <ion-content>
-  <div *ngIf="usuario">
-    
-    <h2>¡Bienvenido(a) {{ usuario.nombre }} {{ usuario.apellido }}!</h2>
+<ion-card>
+    <ion-card-content>
+      <div class="profile-container">
+        <img *ngIf="usuario?.fotoUrl" [src]="usuario?.fotoUrl" alt="Foto de perfil" class="profile-photo mb-1" />
+      </div>
+      <ion-card-header>
+        <ion-card-title class="text-center mb-1">Perfil de {{ usuario?.nombre }} {{ usuario?.apellido }}</ion-card-title>
+      </ion-card-header>
 
-    
-  </div>
+      <ion-list>
+        <ion-item>
+          <ion-label><strong>Cuenta:</strong></ion-label>
+          <ion-text>{{ usuario?.cuenta }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Correo:</strong></ion-label>
+          <ion-text>{{ usuario?.correo }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Nivel Educacional:</strong></ion-label>
+          <ion-text>{{ usuario?.nivelEducacional?.getEducacion() }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Fecha de Nacimiento:</strong></ion-label>
+          <ion-text>{{ usuario?.fechaNacimiento?.toLocaleDateString() }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Pregunta Secreta:</strong></ion-label>
+          <ion-text>{{ usuario?.preguntaSecreta }}</ion-text>
+        </ion-item>
+        <ion-item>
+          <ion-label><strong>Respuesta Secreta:</strong></ion-label>
+          <ion-text>{{ usuario?.respuestaSecreta }}</ion-text>
+        </ion-item>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

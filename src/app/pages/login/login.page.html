@@ -7,14 +7,14 @@
 
 <ion-card-content>
   <ion-toolbar >
-    <p class="texto"> Bienvenido a DUOC</p>
+    <p class="texto"> Bienvenido </p>
   </ion-toolbar>
 </ion-card-content>
 
 <ion-card-content>
   <ion-item>
     <ion-input [(ngModel)]="usuario.cuenta" label="Cuenta" labelPlacement="floating"
-      placeholder="Ej: Chimuelo123"></ion-input>
+      placeholder="Ej: chimuelo"></ion-input>
   </ion-item>
   
 
@@ -27,14 +27,14 @@
 
 
 
-<ion-card-content>
+<ion-card-content class="d-flex justify-content-center flex-column align-items-center">
   <div class="center-container">
     <div class="ion-margin-top">
       <ion-button class="danger" shape="round" size="small" (click)="ingresar()">
         Ingresar
       </ion-button>
       <br><br>
-      <a routerLink="/recuperar">Recuperar Contraseña</a>
     </div>
   </div>
+  <ion-button routerLink="/recuperar" size="small" fill="clear" class="fs-6 text-dark">Recuperar Contraseña</ion-button>
 </ion-card-content>

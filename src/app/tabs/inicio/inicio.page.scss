@@ -83,3 +83,23 @@ ion-icon {
   width: 50px; /* Ajusta el tamaño del botón */
   height: 50px;
 }
+
+:host {
+  ion-content {
+    background-color: white; // Color de fondo por defecto en modo claro
+  }
+}
+
+:host-context(.dark) {
+  ion-content {
+    background-color: black; // Color de fondo en modo oscuro
+  }
+}
+
+ion-content {
+  background-color: white; // Color de fondo por defecto en modo claro;
+}
+
+.dark-mode {
+  background-color: black; // Color de fondo en modo oscuro;
+}
