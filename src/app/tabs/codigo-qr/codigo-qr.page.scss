@@ -30,3 +30,13 @@ th, td {
 th {
   background-color: #f2f2f2;
 }
+
+:host-context(.dark) {
+  ion-content {
+    background-color: black; // Color de fondo en modo oscuro
+  }
+
+  ion-title {
+    color: white !important;  /* Aplica el color blanco */
+  }
+}
