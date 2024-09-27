@@ -4,17 +4,16 @@
 /** Ionic CSS Variables **/
 // src/theme/variables.scss
 :root {
-  --ion-color-primary: #3880ff;
-  --ion-color-primary-rgb: 56, 128, 255;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
-  --ion-background-color: #ffffff; // Color claro
-  --ion-text-color: #000000; // Texto oscuro
-
-  /* Otros colores claros */
+  /* Cambiar el color primario a amarillo */
+  --ion-color-primary: #FFC107; /* Amarillo */
+  --ion-color-primary-rgb: 255, 193, 7;
+  --ion-color-primary-contrast: #000; /* Color de contraste para el texto en botones o headers amarillos */
+  --ion-color-primary-contrast-rgb: 0, 0, 0;
+  --ion-color-primary-shade: #e6ac00;
+  --ion-color-primary-tint: #ffd740;
 }
+  /* Otros colores claros */
+
 
 .dark {
   --ion-background-color: #121212;

@@ -22,3 +22,25 @@ ion-header ion-toolbar{
   justify-content: center;
   height: 100%; /* Asegura que el contenedor use toda la altura disponible */
 }
+
+ion-toolbar {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center;     /* Centrar verticalmente */
+}
+
+.contenedor-imagen {
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center;     /* Centrar verticalmente */
+  width: 100%;             /* Ocupa todo el ancho del ion-toolbar */
+}
+
+.imagen-bienvenida {
+  width: 80%;        /* Ajusta el ancho de la imagen */
+  height: auto;      /* Mantén la proporción de la imagen */
+  border-radius: 45px; /* Esquinas redondeadas */
+  object-fit: cover;  /* Ajusta la imagen al contenedor */
+  overflow: hidden;   /* Asegura que cualquier contenido fuera de los bordes se oculte */
+  display: block;       /* Asegura que la imagen sea un bloque para aplicar estilos correctamente */
+}

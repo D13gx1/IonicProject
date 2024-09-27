@@ -94,6 +94,10 @@ ion-icon {
   ion-content {
     background-color: black; // Color de fondo en modo oscuro
   }
+
+  ion-title {
+    color: white !important;  /* Aplica el color blanco */
+  }
 }
 
 ion-content {

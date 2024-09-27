@@ -1,4 +1,3 @@
-// src/app/tabs/tabs-routing.module.ts
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
@@ -23,6 +22,10 @@ const routes: Routes = [
       {
         path: 'settings',
         loadChildren: () => import('./settings/settings.module').then(m => m.SettingsPageModule)
+      },
+      {
+        path: 'actualizar',
+        loadChildren: () => import('./actualizar/actualizar.module').then(m => m.ActualizarPageModule)  // Mover 'actualizar' dentro de las rutas hijas de 'TabsPage'
       },
       {
         path: '',

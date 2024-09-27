@@ -12,7 +12,6 @@ import { NivelEducacional } from 'src/app/model/nivel-educacional';
 export class MiInfoPage {
   usuario: Usuario | undefined;
   isVisible: boolean = false;
-  
 
   constructor(
     private router: Router,
@@ -26,31 +25,37 @@ export class MiInfoPage {
       const cuenta = nav.extras.state['cuenta'];
       const password = nav.extras.state['password'];
       this.usuario = Usuario.buscarUsuarioValido(cuenta, password);
-      console.log(this.usuario)
+      console.log(this.usuario);
     }
-}
+  }
 
-async confirmLogout() {
-  const alert = await this.alertController.create({
-    header: 'Confirmar salida',
-    message: '¿Estás seguro de que quieres cerrar sesión?',
-    buttons: [
-      {
-        text: 'Cancelar',
-        role: 'cancel',
-        cssClass: 'secondary',
-      }, {
-        text: 'Salir',
-        handler: () => {
-          this.logout();
-        }
-      }
-    ]
-  });
-  await alert.present();
-}
+  async confirmLogout() {
+    const alert = await this.alertController.create({
+      header: 'Confirmar salida',
+      message: '¿Estás seguro de que quieres cerrar sesión?',
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          cssClass: 'secondary',
+        },
+        {
+          text: 'Salir',
+          handler: () => {
+            this.logout();
+          },
+        },
+      ],
+    });
+    await alert.present();
+  }
 
-logout() {
-  this.router.navigate(['/login']);
-}
+  logout() {
+    this.router.navigate(['/login']);
+  }
+
+  irActualizar() {
+    // Navegar a la página de actualización
+    this.router.navigate(['/tabs/actualizar']);
+  }
 }

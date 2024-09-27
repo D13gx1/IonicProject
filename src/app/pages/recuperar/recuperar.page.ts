@@ -41,6 +41,12 @@ export class RecuperarPage implements OnInit {
 
   // Método para verificar si la respuesta secreta ingresada es correcta
   verificarRespuestaSecreta() {
+    // Verificar si el campo de respuesta secreta está vacío
+    if (!this.respuestaSecreta) {
+      this.presentAlert('Error', 'Por favor, ingresa tu respuesta secreta.');
+      return;  // Termina el método si el campo está vacío
+    }
+  
     if (this.usuario && this.respuestaSecreta === this.usuario.respuestaSecreta) {
       // Si la respuesta secreta es correcta, redirigir a la página de correcto con la contraseña
       this.router.navigate(['/correcto'], {
