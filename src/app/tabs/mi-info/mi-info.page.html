@@ -10,46 +10,49 @@
 </ion-header>
     
 <ion-content>
-<ion-card>
+  <ion-card>
     <ion-card-content>
       <div class="profile-container">
-        <img *ngIf="usuario?.fotoUrl" [src]="usuario?.fotoUrl" alt="Foto de perfil" class="profile-photo mb-1" />
+        <img *ngIf="usuario?.fotoUrl" [src]="usuario.fotoUrl" alt="Foto de perfil" class="profile-photo mb-1" />
       </div>
       <ion-card-header>
-        <ion-card-title class="text-center mb-1">Perfil de {{ usuario?.nombre }} {{ usuario?.apellido }}</ion-card-title>
+        <ion-card-title class="text-center mb-1">Editar Perfil</ion-card-title>
       </ion-card-header>
 
       <ion-list>
         <ion-item>
-          <ion-label><strong>Cuenta:</strong></ion-label>
-          <ion-text>{{ usuario?.cuenta }}</ion-text>
+          <ion-label position="floating"><strong>Cuenta:</strong></ion-label>
+          <ion-input [(ngModel)]="usuario.cuenta"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label><strong>Correo:</strong></ion-label>
-          <ion-text>{{ usuario?.correo }}</ion-text>
+          <ion-label position="floating"><strong>Correo:</strong></ion-label>
+          <ion-input [(ngModel)]="usuario.correo"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label><strong>Nivel Educacional:</strong></ion-label>
-          <ion-text>{{ usuario?.nivelEducacional?.getEducacion() }}</ion-text>
+          <ion-label position="floating"><strong>Nivel Educacional:</strong></ion-label>
+          <ion-select [(ngModel)]="usuario.nivelEducacional">
+            <ion-select-option *ngFor="let nivel of nivelesEducacionales" [value]="nivel">
+              {{ nivel.getEducacion() }}
+            </ion-select-option>
+          </ion-select>
         </ion-item>
         <ion-item>
-          <ion-label><strong>Fecha de Nacimiento:</strong></ion-label>
-          <ion-text>{{ usuario?.fechaNacimiento?.toLocaleDateString() }}</ion-text>
+          <ion-label position="floating"><strong>Fecha de Nacimiento:</strong></ion-label>
+          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="usuario.fechaNacimiento"></ion-datetime>
         </ion-item>
         <ion-item>
-          <ion-label><strong>Pregunta Secreta:</strong></ion-label>
-          <ion-text>{{ usuario?.preguntaSecreta }}</ion-text>
+          <ion-label position="floating"><strong>Pregunta Secreta:</strong></ion-label>
+          <ion-input [(ngModel)]="usuario.preguntaSecreta"></ion-input>
         </ion-item>
         <ion-item>
-          <ion-label><strong>Respuesta Secreta:</strong></ion-label>
-          <ion-text>{{ usuario?.respuestaSecreta }}</ion-text>
+          <ion-label position="floating"><strong>Respuesta Secreta:</strong></ion-label>
+          <ion-input [(ngModel)]="usuario.respuestaSecreta"></ion-input>
         </ion-item>
       </ion-list>
 
- <!-- Botón para editar información -->
- <ion-button expand="full" color="primary" (click)="irActualizar()">Actualizar</ion-button>
-
+      <div class="ion-text-center mt-2">
+        <ion-button expand="block" (click)="actualizarDatos()">Actualizar</ion-button>
+      </div>
     </ion-card-content>
   </ion-card>
 </ion-content>
-

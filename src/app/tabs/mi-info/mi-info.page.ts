@@ -1,61 +1,60 @@
 import { Component } from '@angular/core';
 import { Usuario } from '../../model/usuario';
-import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { Router } from '@angular/router';
 import { NivelEducacional } from 'src/app/model/nivel-educacional';
 
 @Component({
   selector: 'app-mi-info',
-  templateUrl: './mi-info.page.html', // Asegúrate de que el nombre del archivo sea correcto
+  templateUrl: './mi-info.page.html',
   styleUrls: ['./mi-info.page.scss'],
 })
 export class MiInfoPage {
-  usuario: Usuario | undefined;
-  isVisible: boolean = false;
+  usuario: Usuario;
+  nivelesEducacionales = NivelEducacional.getNivelesEducacionales(); // Utiliza la función correcta para obtener los niveles
 
   constructor(
-    private router: Router,
-    private alertController: AlertController
-  ) {}
+    private alertController: AlertController,
+    private router: Router
+  ) {
+    // Inicializar con un usuario por defecto o obtener del servicio.
+    this.usuario = Usuario.buscarUsuarioValido('atorres', '1234')!;
+  }
 
   ngOnInit() {
-    // Obtener el estado de la navegación para recuperar los datos del usuario
+    // Recuperar los datos del usuario desde la navegación o servicio
     const nav = this.router.getCurrentNavigation();
-    if (nav && nav.extras && nav.extras.state) {
+    if (nav && nav.extras.state) {
       const cuenta = nav.extras.state['cuenta'];
       const password = nav.extras.state['password'];
-      this.usuario = Usuario.buscarUsuarioValido(cuenta, password);
-      console.log(this.usuario);
+      this.usuario = Usuario.buscarUsuarioValido(cuenta, password)!;
     }
   }
 
-  async confirmLogout() {
+  async actualizarDatos() {
     const alert = await this.alertController.create({
-      header: 'Confirmar salida',
-      message: '¿Estás seguro de que quieres cerrar sesión?',
+      header: 'Confirmar',
+      message: '¿Estás seguro de que deseas actualizar tus datos?',
       buttons: [
         {
           text: 'Cancelar',
           role: 'cancel',
-          cssClass: 'secondary',
         },
         {
-          text: 'Salir',
+          text: 'Actualizar',
           handler: () => {
-            this.logout();
+            // Aquí puedes manejar la lógica de actualización, por ejemplo, persistir los cambios en el modelo
+            console.log('Datos actualizados', this.usuario);
+            // Implementa la lógica para guardar los datos del usuario actualizado
           },
         },
       ],
     });
+
     await alert.present();
   }
 
-  logout() {
+  confirmLogout() {
     this.router.navigate(['/login']);
-  }
-
-  irActualizar() {
-    // Navegar a la página de actualización
-    this.router.navigate(['/tabs/actualizar']);
   }
 }
