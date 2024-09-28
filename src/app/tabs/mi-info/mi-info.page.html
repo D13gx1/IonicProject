@@ -37,9 +37,15 @@
           </ion-select>
         </ion-item>
         <ion-item>
-          <ion-label position="floating"><strong>Fecha de Nacimiento:</strong></ion-label>
-          <ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="usuario.fechaNacimiento"></ion-datetime>
+          <ion-label>Fecha de Nacimiento</ion-label>
+          <ion-datetime
+            displayFormat="DD/MM/YYYY"
+            [(ngModel)]="usuario.fechaNacimiento"
+            placeholder="Selecciona tu fecha de nacimiento"
+            presentation="popover">
+          </ion-datetime>
         </ion-item>
+        
         <ion-item>
           <ion-label position="floating"><strong>Pregunta Secreta:</strong></ion-label>
           <ion-input [(ngModel)]="usuario.preguntaSecreta"></ion-input>

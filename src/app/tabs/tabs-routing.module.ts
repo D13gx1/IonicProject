@@ -24,10 +24,6 @@ const routes: Routes = [
         loadChildren: () => import('./settings/settings.module').then(m => m.SettingsPageModule)
       },
       {
-        path: 'actualizar',
-        loadChildren: () => import('./actualizar/actualizar.module').then(m => m.ActualizarPageModule)  // Mover 'actualizar' dentro de las rutas hijas de 'TabsPage'
-      },
-      {
         path: '',
         redirectTo: '/tabs/inicio',
         pathMatch: 'full'
