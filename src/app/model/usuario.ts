@@ -24,7 +24,7 @@ export class Usuario extends Persona {
     this.nivelEducacional = NivelEducacional.buscarNivelEducacional(1)!;
     this.fechaNacimiento = undefined;
   }
-
+  
   public static getNewUsuario(
     cuenta: string,
     correo: string,
@@ -100,47 +100,37 @@ export class Usuario extends Persona {
       ${this.getFechaNacimiento()}`;
   }
 
+  
   public static getListaUsuarios(): Usuario[] {
-    return [
-      Usuario.getNewUsuario(
-        'atorres', 
-        'atorres@duocuc.cl', 
-        '1234', 
-        '¿Cuál es tu animal favorito?', 
-        'gato', 
-        'Ana', 
-        'Torres', 
-        NivelEducacional.buscarNivelEducacional(6)!,
-        new Date(2000, 0, 1),
-        '../../assets/img/Robocop.jpg'  // Foto de ejemplo
-      ),
-      Usuario.getNewUsuario(
-        'chimuelo',
-        'chimuelo123@duocuc.cl',
-        '1234',
-        '¿Cuál es tu postre favorito?',
-        'panqueques',
-        'Chimuelo',
-        'Alejandro',
-        NivelEducacional.buscarNivelEducacional(5)!,
-        new Date(2008, 10, 5),
-        '../../assets/img/Chimuelo.jpg'  // Foto de ejemplo
-      ),
-      Usuario.getNewUsuario(
-        'cmujica',
-        'cmujica@duocuc.cl',
-        '4321',
-        '¿Cuál es tu vehículo favorito?',
-        'moto',
-        'Carla',
-        'Mujica',
-        NivelEducacional.buscarNivelEducacional(6)!,
-        new Date(2000, 2, 1),
-        '../../assets/img/abed.jpg'  // Foto de ejemplo
-      ),
-    ]
+    return Usuario.listaUsuarios;
   }
 
+  public static setListaUsuarios(usuarios: Usuario[]): void {
+    Usuario.listaUsuarios = usuarios;
+  }
+
+  public static guardarUsuario(usuario: Usuario): void {
+    const index = Usuario.listaUsuarios.findIndex(u => u.cuenta === usuario.cuenta);
+    if (index !== -1) {
+      // Update existing user
+      Usuario.listaUsuarios[index] = usuario;
+    } else {
+      // Add new user
+      Usuario.listaUsuarios.push(usuario);
+    }
+    // Optionally, save to localStorage for persistence
+    localStorage.setItem('usuarios', JSON.stringify(Usuario.listaUsuarios));
+  }
+  public static cargarUsuarios(): void {
+    const usuariosGuardados = localStorage.getItem('usuarios');
+    if (usuariosGuardados) {
+      Usuario.listaUsuarios = JSON.parse(usuariosGuardados).map((u: any) => {
+        const usuario = new Usuario();
+        Object.assign(usuario, u);
+        usuario.nivelEducacional = NivelEducacional.buscarNivelEducacional(u.nivelEducacional.codigo)!;
+        usuario.fechaNacimiento = u.fechaNacimiento ? new Date(u.fechaNacimiento) : undefined;
+        return usuario;
+      });}}
   recibirUsuario(activatedRoute: ActivatedRoute, router: Router) {
     activatedRoute.queryParams.subscribe(() => {
       const nav = router.getCurrentNavigation();
@@ -178,4 +168,42 @@ export class Usuario extends Persona {
     // Navega a la página especificada con los extras de navegación
     router.navigate([pagina], navigationExtras);
   }
+  private static listaUsuarios: Usuario[] = [
+    Usuario.getNewUsuario(
+      'atorres',
+      'atorres@duocuc.cl',
+      '1234',
+      '¿Cuál es tu animal favorito?',
+      'gato',
+      'Ana',
+      'Torres',
+      NivelEducacional.buscarNivelEducacional(6)!,
+      new Date(2000, 0, 1),
+      '../../assets/img/Robocop.jpg'
+    ),
+    Usuario.getNewUsuario(
+      'chimuelo',
+      'chimuelo123@duocuc.cl',
+      '1234',
+      '¿Cuál es tu postre favorito?',
+      'panqueques',
+      'Chimuelo',
+      'Alejandro',
+      NivelEducacional.buscarNivelEducacional(5)!,
+      new Date(2008, 10, 5),
+      '../../assets/img/Chimuelo.jpg'  // Foto de ejemplo
+    ),
+    Usuario.getNewUsuario(
+      'cmujica',
+      'cmujica@duocuc.cl',
+      '4321',
+      '¿Cuál es tu vehículo favorito?',
+      'moto',
+      'Carla',
+      'Mujica',
+      NivelEducacional.buscarNivelEducacional(6)!,
+      new Date(2000, 2, 1),
+      '../../assets/img/abed.jpg'  // Foto de ejemplo
+    ),
+  ];
 }

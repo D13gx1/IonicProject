@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Usuario } from '../../model/usuario';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
@@ -9,26 +9,58 @@ import { NivelEducacional } from 'src/app/model/nivel-educacional';
   templateUrl: './mi-info.page.html',
   styleUrls: ['./mi-info.page.scss'],
 })
-export class MiInfoPage {
+export class MiInfoPage implements OnInit {
   usuario: Usuario;
-  nivelesEducacionales = NivelEducacional.getNivelesEducacionales(); // Utiliza la función correcta para obtener los niveles
+  nivelesEducacionales = NivelEducacional.getNivelesEducacionales();
+  fechaNacimientoString: string = '';
 
   constructor(
     private alertController: AlertController,
     private router: Router
   ) {
-    // Inicializar con un usuario por defecto o obtener del servicio.
-    this.usuario = Usuario.buscarUsuarioValido('atorres', '1234')!;
+    this.usuario = new Usuario();
   }
 
   ngOnInit() {
-    // Recuperar los datos del usuario desde la navegación o servicio
+    
     const nav = this.router.getCurrentNavigation();
     if (nav && nav.extras.state) {
       const cuenta = nav.extras.state['cuenta'];
       const password = nav.extras.state['password'];
-      this.usuario = Usuario.buscarUsuarioValido(cuenta, password)!;
+      const usuarioEncontrado = Usuario.buscarUsuarioValido(cuenta, password);
+      if (usuarioEncontrado) {
+        this.usuario = usuarioEncontrado;
+        this.inicializarFechaNacimiento();
+      } else {
+        this.router.navigate(['/login']);
+      }
+    } else {
+      this.router.navigate(['/login']);
     }
+  }
+
+  inicializarFechaNacimiento() {
+    if (this.usuario.fechaNacimiento) {
+      this.fechaNacimientoString = this.formatearFecha(this.usuario.fechaNacimiento);
+    }
+  }
+
+  formatearFecha(fecha: Date): string {
+    const dia = fecha.getDate().toString().padStart(2, '0');
+    const mes = (fecha.getMonth() + 1).toString().padStart(2, '0');
+    const anio = fecha.getFullYear();
+    return `${dia}/${mes}/${anio}`;
+  }
+
+  actualizarFechaNacimiento() {
+    if (this.fechaNacimientoString) {
+      const [dia, mes, anio] = this.fechaNacimientoString.split('/');
+      this.usuario.fechaNacimiento = new Date(+anio, +mes - 1, +dia);
+    }
+  }
+
+  guardarCambiosEnModelo() {
+    Usuario.guardarUsuario(this.usuario);
   }
 
   async actualizarDatos() {
@@ -43,12 +75,24 @@ export class MiInfoPage {
         {
           text: 'Actualizar',
           handler: () => {
-            // Aquí puedes manejar la lógica de actualización, por ejemplo, persistir los cambios en el modelo
+            this.actualizarFechaNacimiento();
+            this.guardarCambiosEnModelo();
             console.log('Datos actualizados', this.usuario);
-            // Implementa la lógica para guardar los datos del usuario actualizado
+            this.mostrarMensajeExito();
+            
           },
         },
       ],
+    });
+
+    await alert.present();
+  }
+
+  async mostrarMensajeExito() {
+    const alert = await this.alertController.create({
+      header: 'Éxito',
+      message: 'Tus datos han sido actualizados correctamente.',
+      buttons: ['OK']
     });
 
     await alert.present();

@@ -2,13 +2,13 @@
   <ion-toolbar>
     <ion-title color="dark">Mi Información</ion-title>
     <ion-buttons slot="end">
-      <ion-button class="logout-button" (click)="confirmLogout()"> 
+      <ion-button class="logout-button" (click)="confirmLogout()">
         <ion-icon name="exit"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-    
+
 <ion-content>
   <ion-card>
     <ion-card-content>
@@ -25,8 +25,24 @@
           <ion-input [(ngModel)]="usuario.cuenta"></ion-input>
         </ion-item>
         <ion-item>
+          <ion-label position="floating"><strong>Nombre:</strong></ion-label>
+          <ion-input [(ngModel)]="usuario.nombre"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"><strong>Apellido:</strong></ion-label>
+          <ion-input [(ngModel)]="usuario.apellido"></ion-input>
+        </ion-item>
+        <ion-item>
           <ion-label position="floating"><strong>Correo:</strong></ion-label>
           <ion-input [(ngModel)]="usuario.correo"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"><strong>Pregunta Secreta:</strong></ion-label>
+          <ion-input [(ngModel)]="usuario.preguntaSecreta"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-label position="floating"><strong>Respuesta Secreta:</strong></ion-label>
+          <ion-input [(ngModel)]="usuario.respuestaSecreta"></ion-input>
         </ion-item>
         <ion-item>
           <ion-label position="floating"><strong>Nivel Educacional:</strong></ion-label>
@@ -36,24 +52,28 @@
             </ion-select-option>
           </ion-select>
         </ion-item>
-        <ion-item>
-          <ion-label>Fecha de Nacimiento</ion-label>
-          <ion-datetime
-            displayFormat="DD/MM/YYYY"
-            [(ngModel)]="usuario.fechaNacimiento"
-            placeholder="Selecciona tu fecha de nacimiento"
-            presentation="popover">
-          </ion-datetime>
-        </ion-item>
         
         <ion-item>
-          <ion-label position="floating"><strong>Pregunta Secreta:</strong></ion-label>
-          <ion-input [(ngModel)]="usuario.preguntaSecreta"></ion-input>
+          <ion-label position="floating"><strong>Fecha de nacimiento:</strong></ion-label>
+          <ion-input 
+            [(ngModel)]="fechaNacimientoString" 
+            (ionChange)="actualizarFechaNacimiento()"
+            placeholder="DD/MM/AAAA"
+            type="text">
+          </ion-input>
         </ion-item>
-        <ion-item>
-          <ion-label position="floating"><strong>Respuesta Secreta:</strong></ion-label>
-          <ion-input [(ngModel)]="usuario.respuestaSecreta"></ion-input>
-        </ion-item>
+
+          <ion-item>
+            <ion-label position="floating"><strong>contraseña:</strong></ion-label>
+            <ion-input [(ngModel)]="usuario.password"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label position="floating"><strong> repetir contraseña:</strong></ion-label>
+            <ion-input [(ngModel)]="usuario.password"></ion-input>
+          </ion-item>
+
+
+          
       </ion-list>
 
       <div class="ion-text-center mt-2">
