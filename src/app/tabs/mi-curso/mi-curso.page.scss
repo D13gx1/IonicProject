@@ -1,0 +1,26 @@
+ion-content {
+  display: flex;
+  justify-content: center; /* Centra el contenido horizontalmente */
+  align-items: center; /* Centra el contenido verticalmente */
+  height: 100%; /* Asegúrate de que ocupe toda la altura */
+}
+
+ion-card {
+  text-align: left; /* Centra el texto dentro del ion-card */
+}
+
+table.datos-asignatura {
+  margin: 0 auto; /* Centra la tabla horizontalmente */
+  border-collapse: collapse; /* Elimina el espacio entre celdas */
+}
+
+table.datos-asignatura th,
+table.datos-asignatura td {
+  padding: 8px 12px; /* Espaciado en las celdas */
+  border: 1px solid #ccc; /* Borde de las celdas */
+}
+
+table.datos-asignatura th {
+  background-color: #f0f0f0; /* Fondo para los encabezados */
+  font-weight: bold; /* Texto en negrita para los encabezados */
+}

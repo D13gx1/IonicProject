@@ -187,7 +187,7 @@ export class Usuario extends Persona {
       '1234',
       '¿Cuál es tu postre favorito?',
       'panqueques',
-      'Chimuelo',
+      'Chimuelo', 
       'Alejandro',
       NivelEducacional.buscarNivelEducacional(5)!,
       new Date(2008, 10, 5),

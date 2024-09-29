@@ -34,7 +34,11 @@ const routes: Routes = [
     path: '', 
     redirectTo: '/tabs/inicio',
     pathMatch: 'full'
+  },  {
+    path: 'mi-curso',
+    loadChildren: () => import('./mi-curso/mi-curso.module').then( m => m.MiCursoPageModule)
   }
+
 ];
 
 @NgModule({

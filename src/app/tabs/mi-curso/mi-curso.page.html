@@ -1,0 +1,60 @@
+<ion-content>
+  <ion-card *ngIf="sede || idAsignatura || seccion || nombreAsignatura || nombreProfesor">
+    <ion-card-header>
+      <ion-card-title>Datos de la Asignatura</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <table>
+        <thead>
+          <tr>
+            <th>Campo</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="sede">
+            <td>Sede</td>
+            <td>{{ sede }}</td>
+          </tr>
+          <tr *ngIf="idAsignatura">
+            <td>ID Asignatura</td>
+            <td>{{ idAsignatura }}</td>
+          </tr>
+          <tr *ngIf="seccion">
+            <td>Sección</td>
+            <td>{{ seccion }}</td>
+          </tr>
+          <tr *ngIf="nombreAsignatura">
+            <td>Nombre Asignatura</td>
+            <td>{{ nombreAsignatura }}</td>
+          </tr>
+          <tr *ngIf="nombreProfesor">
+            <td>Nombre Profesor</td>
+            <td>{{ nombreProfesor }}</td>
+          </tr>
+          <tr *ngIf="dia">
+            <td>Día</td>
+            <td>{{ dia }}</td>
+          </tr>
+          <tr *ngIf="horaInicio">
+            <td>Hora Inicio</td>
+            <td>{{ horaInicio }}</td>
+          </tr>
+          <tr *ngIf="horaFin">
+            <td>Hora Fin</td>
+            <td>{{ horaFin }}</td>
+          </tr>
+          <tr *ngIf="bloqueInicio">
+            <td>Bloque Inicio</td>
+            <td>{{ bloqueInicio }}</td>
+          </tr>
+          <tr *ngIf="bloqueTermino">
+            <td>Bloque Término</td>
+            <td>{{ bloqueTermino }}</td>
+          </tr>
+        </tbody>
+      </table>
+      <ion-button (click)="regresarInicio()" expand="full">Regresar a Inicio</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

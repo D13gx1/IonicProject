@@ -1,4 +1,3 @@
-// src/app/tabs/settings/settings.page.ts
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -15,7 +14,17 @@ export class SettingsPage implements OnInit {
   ngOnInit() {
     // Comprobar el estado guardado del modo oscuro
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    this.isDarkMode = localStorage.getItem('darkMode') === 'true' || prefersDark;
+
+    // Cambiar a false inicialmente, solo usar la preferencia del usuario si existe
+    const storedDarkMode = localStorage.getItem('darkMode');
+    if (storedDarkMode === 'true') {
+      this.isDarkMode = true; // Usar la preferencia guardada
+    } else if (storedDarkMode === 'false') {
+      this.isDarkMode = false; // Usar la preferencia guardada
+    } else {
+      this.isDarkMode = prefersDark; // Usar la preferencia del sistema si no hay nada guardado
+    }
+
     this.setDarkMode(this.isDarkMode);
   }
 
