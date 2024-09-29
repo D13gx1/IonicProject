@@ -36,6 +36,16 @@ ion-toolbar {
   width: 100%;             /* Ocupa todo el ancho del ion-toolbar */
 }
 
+.welcome-text {
+  font-size: 24px; /* Tamaño de la fuente */
+  text-align: center; /* Centrar el texto */
+  font-family: 'Montserrat', sans-serif; /* Aplicar la fuente Montserrat */
+  font-weight: bold; /* Opcional: para hacer el texto más grueso */
+  margin: 0; /* Eliminar márgenes */
+  width: 100%; /* Asegurarse de que ocupe todo el ancho */
+  display: block; /* Asegura que el <p> actúe como un bloque */
+}
+
 .imagen-bienvenida {
   width: 80%;        /* Ajusta el ancho de la imagen */
   height: auto;      /* Mantén la proporción de la imagen */
@@ -43,4 +53,12 @@ ion-toolbar {
   object-fit: cover;  /* Ajusta la imagen al contenedor */
   overflow: hidden;   /* Asegura que cualquier contenido fuera de los bordes se oculte */
   display: block;       /* Asegura que la imagen sea un bloque para aplicar estilos correctamente */
+}
+
+.small-card-content {
+  padding: 10px;
+  max-width: 400px; /* Reduce el ancho máximo del contenido */
+  margin: 0 auto; /* Centra el contenido horizontalmente */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Añade una pequeña sombra */
+  border-radius: 10px; /* Bordes redondeados */
 }

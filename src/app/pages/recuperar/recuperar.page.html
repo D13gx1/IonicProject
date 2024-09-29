@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="primary">
     <ion-buttons slot="start">
       <ion-button routerLink="/login">
         <ion-icon slot="icon-only" name="exit"></ion-icon>
@@ -9,15 +9,24 @@
   </ion-toolbar>
 </ion-header>
 
-
 <ion-content class="ion-padding">
+  
+  <!-- Condición para ocultar el input del nombre de la cuenta y mostrar mensaje de bienvenida -->
+  <div *ngIf="!usuario">
+    <ion-item>
+      <ion-label position="floating">Nombre de la cuenta</ion-label>
+      <ion-input [(ngModel)]="cuenta"></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label position="floating">Nombre de la cuenta</ion-label>
-    <ion-input [(ngModel)]="cuenta"></ion-input>
-  </ion-item>
+    <ion-button expand="full" (click)="buscarPreguntaSecreta()">Confirmar Nombre</ion-button>
+  </div>
 
-  <ion-button expand="full" (click)="buscarPreguntaSecreta()">confirmar nombre</ion-button>
+  <!-- Mostrar mensaje de bienvenida cuando se haya encontrado el usuario -->
+  <div *ngIf="usuario">
+    <ion-text>
+      <h2>Bienvenido(a), {{ usuario.nombre }} {{ usuario.apellido }}</h2>
+    </ion-text>
+  </div>
 
   <!-- Mostrar la pregunta secreta una vez que se haya encontrado el usuario -->
   <ion-item *ngIf="preguntaSecreta">
