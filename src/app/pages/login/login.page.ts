@@ -14,10 +14,12 @@ export class LoginPage {
   passwordType: string = 'password';
   passwordIcon: string = 'eye-off';
 
+  
   constructor(
       private router: Router
     , private activatedRoute: ActivatedRoute
     , private toastController: ToastController) 
+
   {
     this.usuario = new Usuario();
     this.usuario.recibirUsuario(activatedRoute, router);

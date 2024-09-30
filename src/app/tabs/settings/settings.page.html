@@ -1,25 +1,21 @@
-<!-- src/app/tabs/settings/settings.page.html -->
-<ion-header [translucent]="true"> 
-  <ion-toolbar color="primary">
+<ion-header>
+  <ion-toolbar>
     <ion-title>Settings</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Settings</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-item>
+    <ion-label>Modo oscuro</ion-label>
+    <ion-toggle [(ngModel)]="isDarkMode" (ionChange)="toggleDarkMode($event)"></ion-toggle>
+  </ion-item>
 
-  <ion-list>
-    <ion-item>
-      <ion-label>Modo oscuro</ion-label>
-      <ion-toggle
-        slot="end"
-        [checked]="isDarkMode"
-        (ionChange)="toggleDarkMode($event)">
-      </ion-toggle>
-    </ion-item>
-  </ion-list>
+  <ion-item>
+    <ion-label>Ajustar tamaño de letra</ion-label>
+    <ion-range min="1" max="2" step="0.1" [(ngModel)]="fontSize" (ionChange)="changeFontSize($event)"></ion-range>
+  </ion-item>
+
+  <p [ngStyle]="{'font-size': fontSize + 'em'}">
+    Vista previa del texto con tamaño ajustable.
+  </p>
 </ion-content>

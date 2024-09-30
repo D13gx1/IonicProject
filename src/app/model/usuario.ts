@@ -121,6 +121,7 @@ export class Usuario extends Persona {
     // Optionally, save to localStorage for persistence
     localStorage.setItem('usuarios', JSON.stringify(Usuario.listaUsuarios));
   }
+
   public static cargarUsuarios(): void {
     const usuariosGuardados = localStorage.getItem('usuarios');
     if (usuariosGuardados) {

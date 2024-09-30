@@ -6,42 +6,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./settings.page.scss'],
 })
 export class SettingsPage implements OnInit {
-
   isDarkMode: boolean = false;
+  fontSize: number = 1;  // Valor inicial del tamaño de la fuente
 
   constructor() { }
 
   ngOnInit() {
-    // Comprobar el estado guardado del modo oscuro
+    // Obtener las preferencias de modo oscuro y tamaño de letra
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-    // Cambiar a false inicialmente, solo usar la preferencia del usuario si existe
-    const storedDarkMode = localStorage.getItem('darkMode');
-    if (storedDarkMode === 'true') {
-      this.isDarkMode = true; // Usar la preferencia guardada
-    } else if (storedDarkMode === 'false') {
-      this.isDarkMode = false; // Usar la preferencia guardada
-    } else {
-      this.isDarkMode = prefersDark; // Usar la preferencia del sistema si no hay nada guardado
-    }
-
+    this.isDarkMode = localStorage.getItem('darkMode') === 'true' || prefersDark;
+    this.fontSize = parseFloat(localStorage.getItem('fontSize') || '1');
     this.setDarkMode(this.isDarkMode);
   }
 
-  // Función para alternar entre el modo oscuro y claro
   toggleDarkMode(event: any) {
     this.isDarkMode = event.detail.checked;
     this.setDarkMode(this.isDarkMode);
   }
 
-  // Función que cambia la clase en el body para modo oscuro y guarda el estado en localStorage
   setDarkMode(activate: boolean) {
     if (activate) {
-      document.body.classList.add('dark'); // Activar modo oscuro
+      document.body.classList.add('dark');
       localStorage.setItem('darkMode', 'true');
     } else {
-      document.body.classList.remove('dark'); // Desactivar modo oscuro
+      document.body.classList.remove('dark');
       localStorage.setItem('darkMode', 'false');
     }
+  }
+
+  changeFontSize(event: any) {
+    this.fontSize = event.detail.value;
+    document.body.style.fontSize = `${this.fontSize}em`;
+    localStorage.setItem('fontSize', this.fontSize.toString());
   }
 }

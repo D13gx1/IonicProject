@@ -22,7 +22,6 @@ export class MiInfoPage implements OnInit {
   }
 
   ngOnInit() {
-    
     const nav = this.router.getCurrentNavigation();
     if (nav && nav.extras.state) {
       const cuenta = nav.extras.state['cuenta'];
@@ -79,7 +78,6 @@ export class MiInfoPage implements OnInit {
             this.guardarCambiosEnModelo();
             console.log('Datos actualizados', this.usuario);
             this.mostrarMensajeExito();
-            
           },
         },
       ],

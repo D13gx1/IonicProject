@@ -34,3 +34,24 @@
     color: white; // Color en modo oscuro
   }
 }
+
+ion-toolbar {
+  position: relative;
+  overflow: hidden; // Evita que el texto se vea fuera del contenedor
+}
+
+.moving-text {
+  position: absolute; // Permite que el texto se mueva libremente
+  white-space: nowrap; // Evita que el texto se divida en varias líneas
+  animation: slide 6s linear infinite; // Controla la duración y el tipo de animación
+}
+
+@keyframes slide {
+  0% {
+    transform: translateX(-100%); // Comienza fuera de la pantalla a la izquierda
+  }
+  100% {
+    transform: translateX(100%); // Termina fuera de la pantalla a la derecha
+  }
+
+}
