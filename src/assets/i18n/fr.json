@@ -1,0 +1,16 @@
+{
+  "TITLES": {
+    "THEMES": "Thèmes"
+  },
+  "MESSAGES": {
+    "WELCOME": "Bienvenue dans le système de présence"
+  },
+  "LABELS": {
+    "ACCOUNT": "Compte",
+    "PASSWORD": "Mot de passe"
+  },
+  "BUTTONS": {
+    "LOGIN": "Se connecter",
+    "RECOVER_PASSWORD": "Récupérer le mot de passe"
+  }
+}

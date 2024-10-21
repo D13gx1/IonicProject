@@ -1,8 +1,22 @@
-  <!-- src/app/pages/login/login.page.html -->
 <ion-header>
+  <!-- Toolbar superior con botones de Idioma y Temas -->
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="seleccionarIdioma()"> <!-- Llamar a la función seleccionarIdioma -->
+        Idioma: {{ idiomaUsado }}
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="irAPaginaTemas()"> <!-- Navegar a la página de temas -->
+        {{ 'TITLES.THEMES' | translate }} <!-- Traducción para "Temas" -->
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <!-- Toolbar original con logo y texto de bienvenida -->
   <ion-toolbar>
     <img src="../../../assets/img/Logo_DuocUC.svg.png" alt="Logo" class="header-image"/>
-    <p class="welcome-text">bienvenido al sistema de asistencia</p>
+    <p class="welcome-text">{{ 'MESSAGES.WELCOME' | translate }}</p> <!-- Traducción para "Bienvenido al sistema de asistencia" -->
   </ion-toolbar>
 </ion-header>
 
@@ -14,32 +28,27 @@
   </ion-toolbar>
 </ion-card-content>
 
-
-
 <ion-card>
   <ion-card-content class="small-card-content">
     <ion-item>
-      <ion-input [(ngModel)]="usuario.cuenta" label="Cuenta" labelPlacement="floating" placeholder="Ej: chimuelo"></ion-input>
+      <ion-input [(ngModel)]="usuario.cuenta" label="{{ 'LABELS.ACCOUNT' | translate }}" labelPlacement="floating" placeholder="Ej: chimuelo"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-input [(ngModel)]="usuario.password" [type]="passwordType" label="Contraseña" labelPlacement="floating" placeholder="Ej: 1234"></ion-input>
+      <ion-input [(ngModel)]="usuario.password" [type]="passwordType" label="{{ 'LABELS.PASSWORD' | translate }}" labelPlacement="floating" placeholder="Ej: 1234"></ion-input>
       <ion-icon [name]="passwordIcon" slot="end" (click)="togglePasswordVisibility()"></ion-icon>
     </ion-item>
   </ion-card-content>
 </ion-card>
 
-
-
-
 <ion-card-content class="d-flex justify-content-center flex-column align-items-center">
   <div class="center-container">
     <div class="ion-margin-top">
       <ion-button class="danger" shape="round" size="small" (click)="ingresar()">
-        Ingresar
+        {{ 'BUTTONS.LOGIN' | translate }} <!-- Traducción para "Ingresar" -->
       </ion-button>
       <br><br>
     </div>
   </div>
-  <ion-button routerLink="/recuperar" size="small" fill="clear" class="fs-6 text-dark">Recuperar Contraseña</ion-button>
+  <ion-button routerLink="/recuperar" size="small" fill="clear" class="fs-6 text-dark">{{ 'BUTTONS.RECOVER_PASSWORD' | translate }}</ion-button> <!-- Traducción para "Recuperar Contraseña" -->
 </ion-card-content>

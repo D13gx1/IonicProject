@@ -1,0 +1,18 @@
+{
+  "TITLES": {
+    "THEMES": "Themes"
+  },
+  "MESSAGES": {
+    "WELCOME": "Welcome to the attendance system"
+  },
+  "LABELS": {
+    "ACCOUNT": "Account",
+    "PASSWORD": "Password"
+  },
+  "BUTTONS": {
+    "LOGIN": "Login",
+    "RECOVER_PASSWORD": "Recover Password"
+  },
+  
+
+}

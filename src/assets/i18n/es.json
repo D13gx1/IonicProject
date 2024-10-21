@@ -1,0 +1,16 @@
+{
+  "TITLES": {
+    "THEMES": "Temas"
+  },
+  "MESSAGES": {
+    "WELCOME": "Bienvenido al sistema de asistencia"
+  },
+  "LABELS": {
+    "ACCOUNT": "Cuenta",
+    "PASSWORD": "Contraseña"
+  },
+  "BUTTONS": {
+    "LOGIN": "Ingresar",
+    "RECOVER_PASSWORD": "Recuperar Contraseña"
+  }
+}
